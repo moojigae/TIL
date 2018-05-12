@@ -10,8 +10,8 @@
 3. x86 : 인텔8080-8bit -> 8086-16bit(망함, 호환문제) -> 8088-8bit -> 80286-16bit -> 80386 -32bit -> IA64-64bit(망함,호환문제)
 	AMD64 : Opteron - x86-64based 64bit(32bit와 64bit 사용 가능) -> Athlon -> AMD Phenom -> AMD FX -> Ryzen
 
-![](/Users/rainbow/Documents/dev/TIL/img/8086_diagram.png)
-![](/Users/rainbow/Documents/dev/TIL/img/8086_segments.png)
+![](../img/8086_diagram.png)
+![](../img/8086_segments.png)
 
 4. CISC & RISC 
 - Complex Instruction Set Computers
@@ -64,6 +64,6 @@
 -- 추상화 (간결하고 명확하게 단순화, 일반화, 개념화)
     - ₩₩ 영화를 보고 싶으면 : [어디] 에서 [어떻게] 해결함            
 -- 알고리즘
-![](/Users/rainbow/Documents/dev/TIL/img/computer_thinking.png)
+![](../img/computer_thinking.png)
 -- 솔루션 구현
 -- 솔루션 실행 및 평가
