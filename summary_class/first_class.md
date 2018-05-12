@@ -15,16 +15,16 @@
 
 4. CISC & RISC 
 - Complex Instruction Set Computers
- - 복잡한 명령구조 
- - 어드레싱에 강점
- - 전력 신경 쓸 필요없이 고성능 컴퓨팅에 사용됨
- - Intel x86, AMD64..
+  - 복잡한 명령구조 
+  - 어드레싱에 강점
+  - 전력 신경 쓸 필요없이 고성능 컴퓨팅에 사용됨
+  - Intel x86, AMD64..
 
 - Reduced Instruction Set Computers
- - 명령어의 단순화 (자주 사용하는 명령어 위주)
- - 메모리 접근 횟수가 적음
- - 저전력 프로세싱에 사용
- - SPARC, ARM..
+  - 명령어의 단순화 (자주 사용하는 명령어 위주)
+  - 메모리 접근 횟수가 적음
+  - 저전력 프로세싱에 사용
+  - SPARC, ARM..
 
 5. Memory : 컴퓨터에서 사용할 수 있도록 정보를 저장하는 공간
 - RAM (Random Access Memory)
