@@ -1,0 +1,12 @@
+효율적인 엘리베이터 작동원리 만들기!
+성수 제강빌딩에 엘리베이터 한 대를 더 놓은 뒤, 두 대를 묶어 효율적으로 운영하려 합니다. 요구사항은 다음과 같습니다
+
+1. 한 층에서 두 대의 엘리베이터(A,B)는 하나의 버튼(up&down)으로 호출해야 한다.
+2. 호출한 층에서 가까운 엘리베이터가 해당 호출에 응답해야한다.
+3. 하지만 엘리베이터의 진행방향과 일치하는 호출이 지나갈 층에서 발생할 경우 해당 엘리베이터가 그 호출에 응답해야 한다.
+ex) 2층에서 8층으로 올라가는 엘리베이터가 존재하며, 4층에서 up 버튼을 누를 경우 3층에 서있는 엘리베이터가 아닌 올라가고있는 엘리베이터가 이 호출에 응답한다.
+
+1. Elevator A and B have to share one button(up & down).
+2. If press button going to up direction, the elevator moving in the same direction responds.
+3. If press button going to downs direction, the elevator moving in the same direction responds.
+4. else, the nearest elevator move
