@@ -1,0 +1,50 @@
+# git 수업 내용 정리
+
+1. 실습을 위해 먼저 실습용의 레포를 하나 만든다.
+2. 동일한 이름의 디렉토리를 터미널에서 생성한다. 
+    $ mkdir test
+3. 해당 디렉토리에서 작업을 시작하기 전 git init을 입력하여 git과 연결을 한다.
+    ** git을 실행하는 현재 위치하고 있는 디렉토리 밑의 자료들이 git에 올라가기 때문에 연결하고자 하는 디렉토리를 꼭 확인하고 실행 할 것 **
+    $ git init
+4. 정상처리 되었는지는 status로 확인이 가능하며 활성화가 되면 아래와 같은 메세지가 뜨고, 해당 디렉토리에 .git의 파일 생성된다.
+    $ git status
+    On branch master
+    No commits yet
+5. 실습을 위하여 git에 올릴 md파일 하나를 생성한다.
+    $ touch test.md
+6. 파일을 생성 후 상태를 확인하면, git에 add할 파일이 있다는 메세지를 확인 할 수 있다.
+    $ git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+    (use "git checkout -- <file>..." to discard changes in working directory)
+
+	    modified:   test.md
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+7. add 후 다시 상태를 확인해 보면 commit을 하라는 메세지를 확인 할 수 있다.
+    $ git add test.md   
+    $ git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+	    modified:   test.md  
+8. commit에 옵션 m을 주어 무슨 작업인지 로그를 같이 남길 수 있다.(""안에 로그 내용을 남긴다)
+    $ git commit -m "edit test.md
+        > I edited test.md"
+9. commit까지 마친 상태에서 확인을하면 하나의 커밋된 파일이 확인된다.
+    $ git status
+    On branch master
+    Your branch is ahead of 'origin/master' by 1 commit.
+    (use "git push" to publish your local commits)
+
+    nothing to commit, working tree clean
+10. git에 파일을 올리기 전 remote를 통해 git의 주소지를 지정해준다. git의 주소지는 작업의 편리를 위해 remote add [name] 으로 별명 설정이 가능하다. 기본설정은 origin이다.
+    $ git remote add captain https://github.com/moojigae/test.git
+11. push를 통해 git에 파일의 변경 내용을 업로드 한다. 따로 권한을 만들어 변경하지 않는다면 master권한으로 업로드를 하면 된다.
+    $ git push captain master
