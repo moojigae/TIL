@@ -13,6 +13,7 @@
 5. 실습을 위하여 git에 올릴 md파일 하나를 생성한다.
     $ touch test.md
 6. 파일을 생성 후 상태를 확인하면, git에 add할 파일이 있다는 메세지를 확인 할 수 있다.
+    ** git add . 을 하면 commit이 하나로 올라갈 수 있기 때문에 주의!!**
     $ git status
     On branch master
     Your branch is up to date with 'origin/master'.
