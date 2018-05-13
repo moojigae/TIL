@@ -7,6 +7,6 @@
 ex) 2층에서 8층으로 올라가는 엘리베이터가 존재하며, 4층에서 up 버튼을 누를 경우 3층에 서있는 엘리베이터가 아닌 올라가고있는 엘리베이터가 이 호출에 응답한다.
 
 1. Elevator A and B have to share one button(up & down).
-2. If press button going to up direction, the elevator moving in the same direction responds.
-3. If press button going to downs direction, the elevator moving in the same direction responds.
+2. If press the button for upward direction, the elevator moving in the same direction responds.
+3. If press the button for downward direction, the elevator moving in the same direction responds.
 4. else, the nearest elevator move
