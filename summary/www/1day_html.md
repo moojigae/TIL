@@ -1,6 +1,7 @@
+```html
 <!DOCTYPE html>
-<!-- !!! + tap -->
-<!-- doc + tap -->
+<!-- !!! + tab -->
+<!-- doc + tab -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,21 +13,21 @@
   <!-- ua(user agent) 호환성 보기 모드/ ie=edge는 깔려있는 버전의 최신버전으로 보여줘라 -->
   <title>Document</title>
   <link rel="shortcut icon" href="images/common/webcafe.ico" type="image/x-icon">
-  <!-- link + tap 파비콘은 사이트 앞에 보이는 아이콘  -->
+  <!-- link + tab 파비콘은 사이트 앞에 보이는 아이콘  -->
     <link rel="apple-touch-icon" href="webcafe.png">
-    <!-- link:touch +tap 휴대폰 홈 화면에 추가하는 런처 아이콘  -->
+    <!-- link:touch +tab 휴대폰 홈 화면에 추가하는 런처 아이콘  -->
     <link rel="stylesheet" href="css/test.css">
-    <!-- link:css + tap -->
+    <!-- link:css + tab -->
 </head>
 <body>
   <!-- 3단구조 -->
     <div class="wrapper">
         <header class="header">헤더</header>
-        <!-- header.header + tap -->
+        <!-- header.header + tab -->
         <div class="visual">비주얼</div>
-        <!-- div.visual + tap -->
+        <!-- div.visual + tab -->
         <main class="main clearfix">
-          <!-- main.main + tap -->
+          <!-- main.main + tab -->
             <div class="group group1">GROUP1</div>
             <div class="group group2">GROUP2</div>
             <div class="group group3">GROUP3</div>
@@ -47,3 +48,4 @@
         </div>
 </body>
 </html>
+```
