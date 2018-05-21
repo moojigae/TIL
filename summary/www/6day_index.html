@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>webcafe - html5,css3, accessibility</title>
+    <link rel="shortcut icon" href="images/common/webcafe.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="webcafe.png">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/flex.css"> -->
+    <!-- <link rel="stylesheet" href="css/float.css" class="stylesheet"> -->
+</head>
+<body>
+    <div class="wrapper">
+    <header class="header">
+        <h1 class="logo"><a href="index.html"><img src="images/logo.png" alt="web cafe"></a></h1>
+        <!-- h1.logo>a>img a 태그가 같이 있을 때 인라인이라는 의미 / alt 대체 정보,동등한 대체 텍스트 넣을 것-->
+ <ul class="member">
+     <li><a href="#">홈</a></li>
+     <li><a href="#">회원가입</a></li>
+     <li><a href="#">사이트맵</a> </li>
+     <li><a href="#">English</a></li>
+     <li><a href="#">로그인</a></li>
+ </ul> 
+ <!-- ul.member>li*5>a[href="#"] 가짜 링크를 먼저 넣는다 -->
+ <!-- or 홈,로그인,회원가입,사이트맵,English를 먼저 입력하고 ul.member>li*>a[href="#"] cmd+shift+g를 열고 입력한다 -->
+ <nav class="navigation"></nav>
+ <h2 class="readable-hidden">메인메뉴</h2>
+ <ul class="menu">
+        <li class="menu-item" tabindex="0">
+                <!-- li.menu-item[tabindex=“0”] -->
+                <span class="menu-item-text">HTML에 대해</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">HTML5 소개</a>
+                  </li>
+                  <li>
+                    <a href="#">레퍼런스 소개</a>
+                  </li>
+                  <li>
+                    <a href="#">활용예제</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" tabindex="0">
+                <span class="menu-item-text">CSS에 대해</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">CSS 소개</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS2 VS CSS3</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS 애니메이션</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS Framework</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" tabindex="0">
+                <span class="menu-item-text">웹표준</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">웹표준 이란?</a>
+                  </li>
+                  <li>
+                    <a href="#">W3C</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML5의 현재와 미래</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" tabindex="0">
+                <span class="menu-item-text">웹 접근성</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">웹 접근성의 개요</a>
+                  </li>
+                  <li>
+                    <a href="#">장애 환경의 이해</a>
+                  </li>
+                  <li>
+                    <a href="#">장차법</a>
+                  </li>
+                  <li>
+                    <a href="#">웹 접근성 품질마크</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" tabindex="0">
+                <span class="menu-item-text">묻고 답하기</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">묻고 답하기</a>
+                  </li>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                  <li>
+                    <a href="#">1대1 질문</a>
+                  </li>
+                  <li>
+                    <a href="#">웹표준</a>
+                  </li>
+                  <li>
+                    <a href="#">웹 접근성</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" tabindex="0">
+                <span class="menu-item-text">자료실</span>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="#">공개 자료실</a>
+                  </li>
+                  <li>
+                    <a href="#">이미지 자료실</a>
+                  </li>
+                  <li>
+                    <a href="#">웹표준 자료실</a>
+                  </li>
+                  <li>
+                    <a href="#">웹 접근성 자료실</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+    </header>
+    <div class="visual">
+    <div class="visual-text">
+        Web Standards &amp; accessibility
+    </div>
+    </div>
+    <main class="main clearfix">
+        <div class="group group1">
+            <section class="login">
+            <h2 class="login-heading">로그인</h2>
+            <form method="POST" action="https://formspree.io/hyesung122@naver.com" cleass="login-form">
+            <!-- <form method="POST" action="javascript:alert('로그인 완료')"> 내장된 서버에서 로그인 전송 확인-->
+                <fieldset>
+                    <legend>회원로그인 폼</legend>
+                    <!-- 브라우저마다 다름/숨김콘텐츠로 만들예정 -->
+                    <div class="div user-id"><label for="user-id">아이디</label><input type="email" id="user-id" name="id" required placeholder="ID or Email "></div>
+                    <!-- .div.user-id>label[for="user-id"]{아이디}+input#user-id -->
+                    <!-- name="id"라는 변수에 입력한 값이 담겨서 서버로 보냄 -->
+                    <!-- web forms 2.0으로 input type="email"로 설정하면 email로 설정하지 않았을 경우 클라이언트단에서 차단하고 메세지 뜸 -->
+                    <!-- required는 필수항목 설정 -->
+                    <!-- placeholder 설정을 하면 어떤 방식으로 써야할지 입력값에 대한 힌트주기/ 접근성 높이는 방법 -->
+                    <div class="div user-pwd"><label for="user-pwd">비밀번호</label><input type="password" id="user-pwd" name="pwd" maxlength="8" required placeholder="8자리 이상"></div>
+                    <!-- type을 password로 바꾸면 비밀번호 암호화 처리 -->
+                    <!-- <label for="user-id">아이디</label><input type="text" id="user-id"> -->
+                    <!-- label+input#user-id // 형제레벨로 만들기 인라인 상자라서 공백문자 없이 만들기 위해 한줄 처리
+                    서식의 종류는 type이 결정 /레이블을 클릭했을 때 연결된 서식과 연결하면 사용성이 좋아진다/ id부분에 name으로는 연결 불가 용도가 다름 -->
+                    <!-- 레이블과 input태그는 가로로 쌓여짐/ inline-block성격이 강함//html내부적으로 사이즈 조절이 가능하면 inline-block임 -->
+                    <!-- div = 에이전트 스타일이 없기 때문에 사용하기 수월/ p태그는 margin이 생김 -->
+                    <!-- password 최소값은 마크업에서 지원하지 않고 스크립트 짜야함/최대값까지는 지원함 -->
+                    <!-- title 모든 속성에 사용 가능한 공통 속성 -->
+                    <button type="submit" class="btn-login">로그인</button>
+                    <!-- submit해주면 해당 묶여 있는 form을 전송 -->
+                </fieldset>
+            </form>
+            <ul class="sign">
+                <li><a href="#" class="icon-right-open">회원가입</a></li>
+                <li><a href="#" class="icon-right-open">아이디/비밀번호 찾기</a></li>
+            </ul>
+            </section>
+        </div>
+        <div class="group group2">GROUP2</div>
+        <div class="group group3">GROUP3</div>
+        <!-- <div class="clearfix"></div> -->
+    </main>
+    <article class="slogan">
+        <h2 class="slogan-heading">
+            슬로건
+        </h2>
+    </article>
+    <div class="footer-bg">
+        <footer class="footer">푸터</footer>
+    </div>
+    </div>
+</body>
+</html>
