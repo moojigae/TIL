@@ -1,0 +1,754 @@
+@charset "utf-8";
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+@import url("normalize.css");
+@import url("fontello.css");
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+/* 숨김 콘텐츠 */
+.readable-hidden, legend{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0,0,0,0);
+  margin: -1px;
+  overflow: hidden;
+}
+html{
+  font-size: 10px;
+}
+body {
+  background-color: #fff;
+  font-size: 1.4rem;
+  color: #181818;
+  font-family: 'Spoqa Han Sans';
+}
+/* 레이아웃 */
+.wrapper{
+  background-color: silver;
+  background-image: url("images/bg_flower.png");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+.header, .visual, .main, .slogan, .footer{
+  width: 940px;
+  margin: 0 auto;
+}
+.header{
+  background-color: #fff;
+  padding: 0 30px 40px;
+  position: relative;
+  border-radius: 0 0 15px 15px; 
+}
+/* 로고 */
+.logo{
+  position: absolute;
+  top: 45px;
+  left: 65px;
+}
+/* 멤버 링크 */
+.member{
+  text-align: right;
+  font-size: 0;
+  padding: 10px 0;
+  position: relative;
+  right: -10px;
+}
+.member li{
+  display: inline-block;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.member li:nth-child(n+2)::before{
+  content: ":";
+}
+.member a{
+  padding: 5px 10px;
+}
+/* 메인 메뉴 */
+.menu{
+  background: linear-gradient(to bottom, #ea892e 0%,#ce5327 35%,#ce5327 65%,#ea892e 100%);
+  background-color: #ce5327;
+  border-top: 2px solid #000;
+  border-radius: 0 0 5px 5px;
+  padding-left: 225px;
+  height: 47px;
+}
+.menu-item{
+  float: left;
+  position: relative;
+}
+.menu-item-text{
+  line-height: 45px;
+  border-left: 2px solid rgba(255, 255, 255, .5);
+  display: block;
+  padding: 0 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.6rem;
+  text-shadow: 1px 0 0 #000, 0 1px 0 #000, -1px 0 0 #000, 0 -1px 0 #000;
+}
+.menu-item-text:hover::after{
+  content: "";
+  background-color: #000;
+  display: block;
+  height: 2px;
+}
+.menu-item-text:hover{
+  color: #ff0;
+  cursor: pointer;
+}
+.sub-menu{
+  display: none;
+  position: absolute;
+  top: 50px;
+  white-space: nowrap;
+}
+.sub-menu li{
+  display: inline-block;
+}
+.sub-menu a{
+  display: inline-block;
+  padding: 8px 5px 10px 0;
+  margin-right: 10px;
+}
+.sub-menu a::before{
+  font-family: "fontello";
+  content: "\f192";
+}
+.sub-menu a:hover:before{
+  content: '\e800';
+}
+.menu-item:nth-child(1) .sub-menu{
+  left: 0;
+}
+.menu-item:nth-child(2) .sub-menu{
+  left: 0;
+}
+.menu-item:nth-child(3) .sub-menu{
+  left: 0;
+}
+.menu-item:nth-child(4) .sub-menu{
+  right: 0;
+}
+.menu-item:nth-child(5) .sub-menu{
+  right: 0;
+}
+.menu-item:nth-child(6) .sub-menu{
+  right: 0;
+}
+/* 비주얼 */
+@keyframes flowerAni{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+@keyframes textAni{
+  0%{
+    font-size: 12px;
+    color: rgba(0,0,0,0);
+    transform: translate(0,0);
+    opacity: 1;
+/* 애니효과 */
+  }
+  100%{
+    font-size: 24px;
+    color: rgba(0,0,0,1);
+    transform: translate(400px, 75px);
+    opacity: 1;
+  }
+}
+.visual{
+  height: 120px;
+  position: relative;
+}
+.visual::before, .visual::after{
+  content: "";
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: flowerAni 2s infinite alternate;
+}
+.visual::before{
+  background: url("images/ani_flower_01.png") no-repeat 0 -15px,
+              url("images/ani_flower_02.png") no-repeat 670px 0;
+}
+.visual::after{
+  animation-delay: 1s;
+  background: url("images/ani_flower_03.png") no-repeat 300px 0,
+              url("images/ani_flower_04.png") no-repeat 800px 0;
+}
+.visual-text{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+    /* 글꼴 적용 순위 */
+  /* animation-name: textAni;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards; */
+  /* 애니메이션이 끝난 모드에서 종료 */
+  /* position: absolute; */
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  animation: textAni 5000ms forwards 3 alternate ease-in-out 2s;
+}
+/* 메인 콘텐츠 */
+.main{
+  background-color: #fff;
+  padding: 30px 15px;
+  border-radius: 15px 15px 0 0;
+}
+.clearfix::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.group{
+  float: left;
+  margin: 0 15px;
+}
+.group1{
+  background-color: rgba(255,255,255,.5);
+  width: 250px;
+  float: left;
+}
+.group2{
+  /* background-color: hsla(120,70%,60%,0.5); */
+  width: 380px;
+}
+.group3{
+  background-color: tomato;
+  width: 190px;
+}
+/* 로그인 */
+.login{
+  background: radial-gradient(circle at right top, #ea892e, #ce5327);
+  background-color: #ce5327;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 5px 5px 0 0 #aaa;
+}
+.login-heading{
+  color: #ff0;
+  font-size: 1.5rem;
+    /* font-weight: 700; */
+  /* spoqa 볼드타입으로 변경 */
+}
+.login-form{
+  background-color: #fff;
+  border-radius: 5px 5px 0 0;
+  padding: 10px 10px 0 10px;
+  margin-top: 10px;
+}
+.login-form fieldset{
+  margin: 0;
+  padding: 0 0 10px 0;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  position: relative;
+}
+.login-form [type="email"], .login-form [type="password"]{
+  /* 특정한 속성을 특징하는 것 */
+  width: 100px;
+  height: 22px;
+  border: 1px solid #aaa;
+  padding: 1px 1px 1px 5px;
+  /* 아이디와 비밀번호 창이 글자와 너무 딱 붙어 있으면 답답하니까 살짝 띄워주기 */
+}
+/* .user-id, .user-pw{
+  background: yellow;
+  width:155px;
+  display: flex;
+  justify-content: space-between;
+} */
+/* flex설정 */
+.user-id{
+  margin-bottom: 6px;
+}
+.login-form [for="user-id"], .login-form [for="user-pw"]{
+  width: 4em;
+  display: inline-block;
+}
+.btn-login{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: #ce5327;
+  color: #fff;
+  font: inherit;
+  /* 윈도우에서 글꼴이 달라 보이는 현상 때문에 따로 상속의 옵션을 넣는다 */
+}
+.sign{
+  background-color: #fff;
+  border-radius: 0 0  5px 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.sign a{
+  letter-spacing: -1px;
+  /* 자간 조절 */
+  padding: 5px 0;
+}
+.sign .icon-right-open::before{
+  color: #ce5327;
+}
+.validation-list{
+  /* background: yellow; */
+  margin: 25px;
+}
+.validation-list li{
+  margin :10px 0;
+}
+.validation-list a{
+  background: url("images/validation_icon.png") no-repeat 15px 50%, linear-gradient(to bottom, #eee, #ccc);
+  background-color: #ccc;
+  display: block;
+  /* 손을 어디에 올려놔도 타이틀이 보임 */
+  border: 1px solid #aaa;
+  border-radius: 15px;
+  /* 정사각형 50%를 줄 때는 괜찮은데 직사각형일 경우는 문제가 됨 */
+  line-height: 30px;
+  padding-left: 45px;
+}
+/* 웹관련 용어 */
+/* .term{
+  background : linear-gradient(to top, #eee, #ccc);
+  margin-top:20px;
+  border : 1px solid black;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+.term-heading{
+  font-weight: 300;
+}
+.term-list-subject{
+  color: blue;
+  font-weight: 400;
+  float : right;
+}
+.term-list-thumbnail{
+  margin: 0px;
+  float: left;
+} */
+.term{
+  background : linear-gradient(to bottom, #eee, #ccc);
+  margin-top:20px;
+  border : 1px solid #aaa;
+  border-radius: 5px;
+  padding: 10px 15px 10px 15px;
+}
+.term-heading{
+  font-size: 1.5rem;
+}
+.term-list{
+  margin:10px 0 0;
+}
+.term-list-subject{
+  /* background: yellow; */
+  /* float: right;
+  width: 145px; */
+  color: #296897;
+}
+.term-list-subject, .term-list-brief{
+  float: right;
+  width: 145px;
+}
+.term-list-thumbnail{
+  /* background: pink; */
+  margin:0;
+  float : left;
+  /* display: inline-block; */
+}
+.term-list-thumbnail img{
+  display: block;
+}
+.term-list-brief{
+  /* background: green; */
+  margin:0;
+  margin-top:5px;
+  line-height: 1.5;
+  /* width: 140px;  */
+  /* display: inline-block;
+  /* float 때문에 밑에 쌓이지 않음 */
+}
+/* .term-list:nth-child(4), .term-list:nth-child(5){
+  margin-top: 10px;
+}
+.term-list:nth-child(4), .term-list:nth-child(6){
+  float: left;
+}
+.term-list:nth-child(5){
+  float: right;
+} */
+/* 반대로 위치하는 셋팅 */
+/* .term-list:nth-child(6n+4), .term-list:nth-child(6n+5){
+  margin-top: 10px;
+}
+.term-list:nth-child(6n+4), .term-list:nth-child(6n+6){
+  float: left;
+}
+.term-list:nth-child(6n+5){
+  float: right;
+} */
+/* 6개를 셋트로 묶어서 작업 */
+
+/* 검색폼 */
+/* .search-form {
+  background: yellow;
+  border: 1px 1px 0 1px solid #aaa;
+  border-radius: 5px;
+} */
+.search-form {
+  background: linear-gradient(to top, #eee, #ccc);
+  background-color: #ccc;
+  border-bottom: 0;
+  border: 1px solid #eee;
+  border-radius: 15px 15px 0 0;
+  padding: 15px 25px 10px;
+}
+.search-form fieldset{
+  /* background: yellow; */
+  padding: 0;
+  margin: 0;
+  border:0;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+}
+.search-form-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* .search-form label{
+  background: pink;
+} */
+.btn-search{
+  background: #333;
+  color: #fff;
+  font: inherit;
+  padding : 0 10px;
+  border: 1px solid #aaa;
+  height: 24px;
+  border-radius:3px; 
+}
+/* 크롬의 문제를 해결하기 위한 설정 */
+/* flex-grow, flex-shirk 확대/축소 */
+/* .search-form fieldset *{
+  flex-grow: 0;
+  flex-shrink: 0;
+  /* 축소 안하게 만들기 */
+  /* flex-basis: auto; */
+  /* flex: 0 1 auto 축소법으로 default 값 */
+/* } */ 
+.search-form [type="search"]{
+  width: 200px;
+  height: 24px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 1px 1px 1px 5px;
+}
+/* .board{
+  margin-top: 10px;
+  position: relative;
+  background: green;
+}
+.notice-heading, .pds-heading{
+  background: linear-gradient(to top, #eee, #ccc);
+  color : rgb(70, 66, 66);
+  margin:5px;
+  font-size: 1.5rem;
+  border: 1px solid #aaa;
+  border-radius: 5px 5px 0 0;
+  padding: 10px;
+  margin-top:5px;
+  position: absolute;
+  top: 0;
+}
+.pds-heading {
+  left: 74px;
+}
+.notice-list, .pds-list{
+  background: pink;
+  line-height: 25px;
+}
+.notice-more, .pds-more{
+  position: absolute;
+  top: 7px;
+  right: 0
+} */
+/* 공지사항 및 자료실 */
+.board{
+  /* background: yellow; */
+  margin-top: 20px;
+  position: relative;
+}
+.tab{
+border:1px solid #aaa;
+border-radius: 5px 5px 0 0;
+background: linear-gradient(to bottom, #eee, #ccc);
+background-color: #ccc;
+color: #666;
+font-size: 1.4rem;
+font-weight: 400;
+padding: 5px 10px;
+position: absolute;
+top: 0;
+cursor: pointer;
+}
+.pds-heading{
+  left:73px;
+}
+.is-act .tab{
+background: #fff;
+border-color: #ce5327 #ce5327 #fff #ce5327;
+color: #ce5327;
+}
+.notice-list, .notice-more, .pds-list, .pds-more{
+display: none;
+}
+.is-act .notice-list,.is-act .notice-more, .is-act .pds-list, .is-act .pds-more{
+  display: block;
+}
+.notice-list, .pds-list{
+  padding-top: 45px;
+  /* background: pink; */
+}
+.notice-list li, .pds-list li{
+  /* background: skyblue; */
+  margin-bottom: 10px;
+}
+.notice-list li::after, .pds-list li::after{
+  /* background: skyblue; */
+  /* margin-bottom: 10px; */
+  /* display:flex;
+  justify-content: space-between;  */
+  content: "";
+  display: block;
+  clear: both;
+}
+/* .notice-list *{
+  display: inline-block;
+  overflow: hidden;
+} */
+.notice-list li::before, .pds-list li::before {
+  /* vertical-align: middle; */
+  /* background: yellow; */
+  float:left;
+  margin-top:2px;
+}
+.notice-list a .pds-list a{
+  float:left;
+  /* background: orange; */
+  /* width: 275px; */
+  width: calc(100% - 105px);
+  /* display: inline-block; */
+  white-space: nowrap;
+  /* block의 성향을 가지고 있는 것에서 줄바꿈 금지 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 말줄임표 처리 */
+}
+.notice-list time .pds-list time{
+  float: right;
+  /* background: lime; */
+  margin-left: auto;
+  /* margin을 줘서 박스를 늘리는것 */
+}
+.notice-more::before, .pds-more::before{
+color: hsla(110, 40%, 30%,1);
+}
+.notice-more, .pds-more{
+position: absolute;
+top:-8px;
+right: -8px;
+padding: 8px;
+}
+/* .news{
+  background: yellow;
+  margin-top:20px;
+  position: relative;
+}
+.news-heading{
+  background: pink;
+  color: #ce5327;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+}
+.news-item-date{
+  background: red;
+  position: absolute;
+  top: 70px;
+  right : 162px;
+}
+.news-item-heading{
+  background: green;
+  position: absolute;
+  top:45px;
+  right: 10px;
+}
+.news-item-brief{
+  position: inline;
+} */
+/* 새소식 */
+.news{
+  position: relative;
+  margin-top:20px;
+}
+.news::before{
+  /* news밑 선처리 */
+  content: "";
+  position: absolute;
+  left:0;
+  top:30px;
+  height: 1px;
+  width:80%;
+  background: linear-gradient(to right, #aaa, #fff)
+}
+.news-heading{
+  font-size: 1.5rem;
+  color:#ce5327;
+}
+.new-item-heading{
+  font-size: 1.4rem;
+}
+.news-link{
+  display: block;
+  outline-offset: 5px;
+}
+.news-item{
+  background: yellow;
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 120px 15px 1fr;
+  grid-template-rows: auto auto auto;
+  /* grid-column-gap: 15px;
+  grid-template-areas: "thumbnail heading"
+                        "thumbnail date"
+                        "thumbnail brief" */
+    
+}
+.news-item-heading{
+  background: pink;
+  /* grid-area: 1/2/2/3; */
+  grid-column: 3/4;
+  grid-row:1/2;
+  /* grid-area: heading; */
+  /* grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  단축표기 */
+}
+.news-item-date{
+  background: lime;
+  grid-column: 3/4;
+  grid-row:2/3;
+  /* grid-area: date; */
+  /* grid-area: 2/2/3/3; */
+}
+.news-item-brief{
+  grid-column: 3/4;
+  grid-row:3/4;
+  /* grid-area: brief; */
+  /* grid-area:3/2/4/3; */
+}
+.news-item-thumbnail{
+  margin:0;
+  background: teal;
+  grid-column: 1/2;
+  grid-row:1/4;
+  /* grid-area:thumbnail; */
+  /* grid-area:1/1/4/2; */
+}
+/* .news-item{
+  background: yellow;
+  margin-top: 35px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 120px 15px 1fr;
+      grid-template-columns: 120px 15px 1fr;
+  -ms-grid-rows: auto auto auto;
+      grid-template-rows: auto auto auto;
+    
+}
+.news-item-heading{
+  background: pink;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row:1;
+  -ms-grid-row-span:1;
+  grid-row:1/2;
+}
+.news-item-date{
+  background: lime;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row:2;
+  -ms-grid-row-span:1;
+  grid-row:2/3;
+}
+.news-item-brief{
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row:3;
+  -ms-grid-row-span:1;
+  grid-row:3/4;
+}
+.news-item-thumbnail{
+  margin:0;
+  background: teal;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row:1;
+  -ms-grid-row-span:3;
+  grid-row:1/4;
+} */
+.news-more{
+  position: absolute;
+  top:-8px;
+  right: -8px;
+  padding: 8px;
+}
+.news-more::before{
+  color: hsla(110, 40%, 30%,1);
+}
+/* 슬로건 */
+.slogan{
+  background-color: blueviolet;
+  height: 10vh;
+  clear: both;
+}
+.footer-bg{
+  background-color: orange;
+}
+.footer{
+  background-color: silver;
+  height: 10vh;
+}
