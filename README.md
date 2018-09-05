@@ -6,13 +6,22 @@ Today I learned
 프론트엔드란, HTML/CSS, JavaScript를 활용하여 사용자와 인터렉션을 수행하는 가장 중요한 파트입니다
 
 
+* 파일 이름 : week01-mm-dd-yy-이름-이름.md
 
-mm/dd (요일) 0조 (이름, 이름)
-1. Today I Learned
+---
+
+# mm/dd (요일) 0조 (이름, 이름)
+
+## 1. Today I Learned
+
 /* 팀원이 상의하여 오늘 배운 내용 중 중요하다고 생각한 개념을 세 가지 고르고, 간단하게 그 내용을 정리합니다. */
 
-2. Today I found Out
+## 2. Today I found Out
+
 /* 배운 내용 외에 뭔가 깨달음이 왔거나 느낀 바가 있다면 일기처럼 간단하게 적어주시면 됩니다. */
 
-3. Reference
+## 3. Reference 
+
 /* 참고할 내용이나 링크를 정리해 주세요. */
+
+---
