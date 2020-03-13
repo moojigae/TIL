@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+<style>
+#ff1{font-family:"궁서체";}
+#ff2{font-family:"굴림체";}
+#ff3{font-family:"없는 글꼴", "바탕체";}
+#web-font{font-family: font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;}
+
+#size1{font-size:30px;}
+#size2{font-size:2em;}
+#size3{font-size:150%;}
+
+#fw1{font-weight:bold;}
+#fw2{font-weight:light;}
+#fw3{font-weight:900;}
+
+#fv{font-variant:small-caps;}
+
+#fs1{font-style:italic;} /* 원래 이탈리아 영문체*/
+#fs2{font-style:oblique;} /* 유관상 같으나 원래 글씨를 기울인 것*/
+
+#f1{font: 16px/100px "궁서체";} /*line-height:글과 글 사이 간격*/
+#f2{font: italic bold 20px/20px "고딕체";}
+
+#c-name{color : green;}
+#c-16{color:#A279C8}
+#c-rgb{color: rgb(84,9,152)}
+#c-rgba{color: rgba(99,143,238,0.4)}  /*a는 투명도 조절. 0~1사이의 숫자 입력/값이 작아질 수록 투명도가 커짐*/
+#c-hsl{color: hsl(360,100%,50%)}
+#c-hsla{color:hsla(360, 100%, 50%, 0.3);}
+
+</style>
+
+</head>
+<body>
+	<h1>텍스트 스타일</h1>
+	
+	<hr>
+	
+	<h2>font-family속성</h2>
+	<p>텍스트 글꼴 지정할 때 사용</p>
+	<pre>	- 선택자{font-family: 글꼴이름;}</pre>
+	<p id="ff1">글꼴 변결 텍스트1</p>
+	<p id="ff2">글꼴 변결 텍스트2</p>
+	<p id="ff3">글꼴 변결 텍스트3</p>
+	
+	<h3>웹 폰트 사용하는 방법</h3>
+	<p>
+		웹 폰트 제공 사이트 : 
+		<a href="http://fonts.google.com" target="_blank">
+		구글 폰트 사이트
+		</a>
+	</p>
+	<p id="web-font">font style test</p>
+	
+	<hr>
+	<h2>font-size 속성</h2>
+	<p>텍스트 크기를 변경할 때 사용</p>
+	<pre>	- 선택자{font-size: 크기;}</pre>
+	<ul>
+		<li id="size1">px텍스트</li>
+		<li id="size2">em텍스트</li>
+		<li id="size3">%텍스트</li>
+	</ul>
+	
+	<hr>
+	
+	<h2>font-weight</h2>
+	<p>글씨 두께 변경할 때 사용</p>
+	<pre>	- 선택자{font-weight: 속성 값;}</pre>
+	<ul>
+		<li>원래 굵기</li>
+		<li id="fw1">굵은 글꼴로 변경</li>
+		<li id="fw2">원래 굵기 보다 더가늘게 변경</li>
+		<li id="fw3">원래 굵기 보다 더 굵게 변경</li>
+	</ul>
+	
+	<hr>
+	
+	<h2>font-variant</h2>
+	<p>작은 대문자로 변경할 때</p>
+	<pre>	- 선택자{font-variant: 속성 값;}</pre>
+	<p>I LOVE YOU</p>
+	<p id="fv">i love you</p>
+	
+	<hr>
+	
+	<h2>font-style</h2>
+	<p>텍스트의 기울임을 지정할 때</p>
+	<pre>	- 선택자{font-style: 속성 값;}</pre>
+	<ul>
+		<li id="fs1">italic 기울임 글꼴</li>
+		<li id="fs2">oblique 기울임 글꼴</li>
+	</ul>
+	
+	<hr>
+	
+	<h2>font</h2>
+	<p>글꼴 관련 스타일을 한 번에 지정할 때 사용</p>
+	<pre>	- 선택자{font: font-style font-variant font-weight font size/line-height font-family;></pre>
+	<ul>
+		<li id="f1">글꼴 관련 스타일 테스트1</li>
+		<li id="f2">글꼴 관련 스타일 테스트2</li>
+	</ul>
+	
+	<h2>color</h2>
+	<p>텍스트 색상 변경</p>
+	<pre>	- 선택자{color: 색상 영문이름 | 16진수 숫자 | rgb | rgba | hsl | hsla}</pre>
+	<p>
+		<a href="http://www.colorpicker.com" target="blank">
+			색상 값 참조 사이트
+		</a>
+	</p>
+	<ul>
+		<li id="c-name">색상명으로 지정</li>
+		<li id="c-16">16진수 값으로 지정</li>
+		<li id="c-rgb">rgb로 지정</li>
+		<li id="c-rgba">rgba로 지정</li>
+		<li id="c-hsl">hsl로 지정</li>
+		<li id="c-hsla">hsla로 지정</li>
+	</ul>
+	
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
