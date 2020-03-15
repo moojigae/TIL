@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+.display{width:150px; height:150px; 
+		 border: 1px solid black; color:white;}
+.area1{background: red;}		 
+.area2{background: tomato;}		 
+.area3{background: yellow;}		 
+.area4{background: green;}		 
+.area5{background: skyblue;}		 
+		 
+.display-test1{display:inline;}
+.display-test3{display:block;}
+.display-test2{display:inline-block;}
+
+.border{width:100px; height:100px;}
+#border-test1{border-style: none;}
+#border-test2{border-stylr:hidden; box-shadow: 5px 5px 3px 2px gray;}
+/*box-shadow: 5px 5px 3px 2px gray; 수평 수직 흐림 번짐 색상*/
+#border-test3{border-style: dotted;}
+#border-test4{border-style: dashed; border-top-color: red;}
+#border-test5{border-color:red; border-style: double;}
+#border-test6{border-style: groove; border-top-left-radius: 50px;}
+#border-test7{border-style: inset; border-bottom-right-radius:50px;}
+#border-test8{border-style:outset; border-top-left-radius:50px; border-bottom-right-radius:50px;}
+#border-test9{border-style: ridge;}
+#border-test10{border-style:solid; border-width:10px;}
+
+.space{background: beige; width: 100px; height:100px;}
+#padding1{padding: 10px;}
+#padding2{padding-top: 50px; padding-left: 100px;}
+#margin1{margin:50px;}
+#margin2{margin-top: 50px; margin-left: 10px;}
+
+.positioning{border: 1px solid black;}
+.outer{position:relative;}
+#first{width: 300px; height: 300px; background: yellow;
+		}
+#second{width: 200px; height: 200px; background: yellowgreen;
+		top: 50px; left: 50px; position: absolute;}
+#third{width: 100px; height: 100px; background: red;
+		position: absolute; top:100px; left: 100px;}
+#fixed-area{
+			width:100px;
+			height:100px;
+			background: blue;
+			position: fixed;
+			}
+
+.visibility{width: 100px; height:100px; border:1px solid black;}
+#v-test1{background: red;}
+#v-test2{background: green; visibility: hidden; display:none;} 
+/*visibility: hidden 눈에만 안보이고 위치는 유지 */
+#v-test3{background: yellow;}
+
+.z-wrap{width: auto; height: 210px; position: relative;}
+.z-test{width:150px; height: 100px; border: 1px solid black; position:absolute;}
+#z1{background: yellow; top: 100px; left: 100px; z-index: 1000;}
+#z2{background: green; top: 50px; left: 50px; z-index: 100;}
+#z3{background: red; top: 10px; left: 10px;}
+
+
+
+</style>
+</head>
+<body>
+	<h1>레이아웃 스타일</h1>
+	
+	<hr>
+	
+	<h2>기본 스타일</h2>
+	<h3>화면 배치 방법</h3>
+	<p>박스 요소와 인라인 요소의 속성을 변경하여 배치 방식을 변경 할 수 있음</p>
+	<h4>블록요소를 인라인 요소로 변경</h4>
+	<pre>	- 선택자{display:inline;}</pre>
+	<pre>		: 인라인 요소로 변경되면 크기 지정한게 먹지 않고 글자 크기에 맞게 크기 변경 됨</pre>
+	<div class="display display-test1 area1">첫 번째 영역</div> 
+	<div class="display display-test1 area2">두 번째 영역</div> 
+	<div class="display display-test1 area3">세 번째 영역</div> 
+	<div class="display display-test1 area4">네 번째 영역</div> 
+	<div class="display display-test1 area5">다섯 번째 영역</div> 
+	
+	<pre>	- 선택자{display:inline-block;}</pre>
+	<pre>		: 영역은 인라인요소가 적용되고 내용은 블럭요소 적용</pre>
+	<div class="display display-test2 area1">첫 번째 영역</div> 
+	<div class="display display-test2 area2">두 번째 영역</div> 
+	<div class="display display-test2 area3">세 번째 영역</div> 
+	<div class="display display-test2 area4">네 번째 영역</div> 
+	<div class="display display-test2 area5">다섯 번째 영역</div> 
+	
+	
+	<h4>인라인 요소를 블록 요소로 변경</h4>
+	<pre>	- 선택자{display: block;}</pre>
+	<pre>		: 블록요소로 변경되면서 너비와 높이 속성 지정 가능</pre>
+	<span class="display display-test3 area1">첫 번째 영역</span> 
+	<span class="display display-test3 area2">두 번째 영역</span> 
+	<span class="display display-test3 area3">세 번째 영역</span> 
+	<span class="display display-test3 area4">네 번째 영역</span> 
+	<span class="display display-test3 area5">다섯 번째 영역</span> 
+	
+	<hr>
+	<h2>테두리 스타일</h2>
+	<h3>테두리 없음</h3>
+	<div class="border" id="border-test1"></div>
+	<h3>테두리 없이 그림자만</h3>
+	<div class="border" id="border-test2"></div>
+	<h3>점선 테두리</h3>
+	<div class="border" id="border-test3"></div>
+	<h3>위만 빨간색인 짧은 선 테두리</h3>
+	<div class="border" id="border-test4"></div>
+	<h3>전체 선이 빨간 색인 이중선 테두리</h3>
+	<div class="border" id="border-test5"></div>
+	<h3>좌측 상단이 둥글면서 흠이 파인 듯한 테두리</h3>
+	<div class="border" id="border-test6"></div>
+	<h3>우측 하단이 둥글면서 창에 박혀있는 듯한 테두리</h3>
+	<div class="border" id="border-test7"></div>
+	<h3>좌측 상단과 우측 하단이 둥글면서 창에서 튀어나온 듯한 테두리</h3>
+	<div class="border" id="border-test8"></div>
+	<h3>튀어나온 듯한 테두리</h3>
+	<div class="border" id="border-test9"></div>
+	<h3>두께가 두꺼운 실선 테두리</h3>
+	<div class="border" id="border-test10"></div>
+
+	<h2>여백 스타일</h2>
+	<h3>padding</h3>
+	<p>테두리와 콘텐츠 영역 사이의 거리 조절</p>
+	<h3>margin</h3>
+	<p>block요소나 inline요소들 간의 간격을 조절하는 속성</p>
+	
+	<h4>기준 div</h4>
+	<div class="space">콘텐츠 영역</div>
+	<h4>전체적으로 padding 적용</h4>
+	<div class="space" id="padding1">콘텐츠 영역</div>
+	<h4>일부분만 padding 적용</h4>
+	<div class="space" id="padding2">콘텐츠 영역</div>
+	<h4>전체적으로 margin 적용</h4>
+	<div class="space" id="margin1">콘텐츠 영역</div>
+	<h4>전체적으로 margin 적용</h4>
+	<div class="space" id="margin2">콘텐츠 영역</div>
+
+	<h2>포지셔닝</h2>
+	<h3>위치 종류</h3>
+	<h4>절대 위치와 상대 위치</h4>
+	<div class="outer">
+		<div class="positioning" id="first"></div>
+		<div class="positioning" id="second"></div>
+		<div class="positioning" id="third"></div>
+	</div>
+
+	<h4>고정 위치</h4>
+	<div class="positioning" id="fixed-area"></div>
+
+	<hr>
+	
+	<h3>visibility</h3>
+	<p>페이지에 특정 속성을 보이거나 보이지 않게 하는 속성</p>
+	<div class="visibility" id="v-test1"></div>
+	<div class="visibility" id="v-test2"></div>
+	<div class="visibility" id="v-test3"></div>
+	
+	<h3>z-index</h3>
+	<p>페이지 안의 요소들을 순서대로 쌓는 속성</p><br>
+	<p>숫자가 높을 수록 우선 순위가 높음/ default : 0</p>
+	<div class="z-wrap">
+		<div class="z-test" id="z1">요소1</div>
+		<div class="z-test" id="z2">요소2</div>
+		<div class="z-test" id="z3">요소3</div>
+	</div>
+	
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
