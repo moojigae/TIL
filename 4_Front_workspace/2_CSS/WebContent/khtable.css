@@ -1,0 +1,17 @@
+*{padding:2px;
+  margin:0;}
+#table{text-align: center; padding:0;}
+#title{color: tomato;
+       font-size: x-large;
+       font-weight: 900;}
+th{background: rgb(241, 83, 20);
+    color: white;}
+tbody{background: orange;}
+.button{background: green;
+        color: white;
+        margin-right: 1px;
+        margin-left: 1px;
+        float: right;}
+tfoot{background: yellow;
+      color:red;
+      font-weight: 600;}

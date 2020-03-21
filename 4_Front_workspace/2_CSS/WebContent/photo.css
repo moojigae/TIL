@@ -1,0 +1,15 @@
+#wrapper{border : 3px solid black;
+         width: 90vh;
+         height: 70vh;
+         padding-bottom: 30px;}
+h1{font-family: "굴림체";}
+#imgwrap{width:53vh;
+         border: 1px solid #aaa;
+         padding: 15px 15px 30px 15px;
+         transform: perspective(200px) rotate(8deg);
+         margin: 120px}
+img{width: 45vh;}
+#text{text-align: center;
+      color: green;
+      font-weight: bold;
+      font-family: "궁서체";}
