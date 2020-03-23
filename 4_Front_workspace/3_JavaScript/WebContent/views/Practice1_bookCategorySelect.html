@@ -13,24 +13,72 @@
 	<form>
 		<fieldset>
 			<legend>취미</legend>
-			<input type="checkbox" name="hobby" value="all"><label>전체선택</label>
-			<input type="checkbox" name="hobby" value="total"><label>종합</label>
-			<input type="checkbox" name="hobby" value="novel"><label>소설</label>
-			<input type="checkbox" name='hobby' value="poem"><label>시/에세이</label>
-			<input type="checkbox" name="hobby" value="economy"><label>경제/경영</label>
-			<input type="checkbox" name="hobby" value="selfImprovement"><label>자기계발</label>
-			<input type="checkbox" name="hobby" value="child"><label>아동</label><br>
-			<input type="checkbox" name="hobby" value="travle"><label>여행</label>
-			<input type="checkbox" name="hobby" value="science"><label>과학</label>
-			<input type="checkbox" name="hobby" value="history"><label>역사/문화</label>
-			<input type="checkbox" name="hobby" value="foreignLanguage"><label>외국어</label>
-			<input type="checkbox" name="hobby" value="computer"><label>컴퓨터</label>
-			<input type="checkbox" name="hobby" value="comic"><label>만화</label>
+			<table>
+				<tr>
+					<td><input type="checkbox" name="hobby" value="전체선택"><label>전체선택</label></td>
+					<td><input type="checkbox" name="hobby" value="종합"><label>종합</label></td>
+					<td><input type="checkbox" name="hobby" value="소설"><label>소설</label></td>
+					<td><input type="checkbox" name='hobby' value="시/에세이"><label>시/에세이</label></td>
+					<td><input type="checkbox" name="hobby" value="경제/경영"><label>경제/경영</label></td>
+					<td><input type="checkbox" name="hobby" value="자기계발"><label>자기계발</label></td>
+					<td><input type="checkbox" name="hobby" value="아동"><label>아동</label></td>
+				</tr>
+				<tr>	
+					<td></td>
+					<td><input type="checkbox" name="hobby" value="여행"><label>여행</label></td>
+					<td><input type="checkbox" name="hobby" value="과학"><label>과학</label></td>
+					<td><input type="checkbox" name="hobby" value="역사/문화"><label>역사/문화</label></td>
+					<td><input type="checkbox" name="hobby" value="외국어"><label>외국어</label></td>
+					<td><input type="checkbox" name="hobby" value="컴퓨터"><label>컴퓨터</label></td>
+					<td><input type="checkbox" name="hobby" value="만화"><label>만화</label></td>
+				</tr>	
+			</table>
 		</fieldset>
-		<br>
-		<input type="button" value="카테고리 선택">
-		<div id="area1" class="area"></div>
 	</form>
-	
+	<br>
+	<button onclick="category()";>카테고리 선택</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function category(){
+			var hobby = document.getElementsByName('hobby');
+			
+			var checkItem= "";
+			
+			for(var i = 0; i < hobby.length; i++){
+				/* if(hobby[0].value === "전체선택"){
+					// for(var i = 1; i < hobby.length; i++){
+					//	hobby[i].checked = true;
+					// }
+					hobby[1].checked = true;
+					hobby[2].checked = true;
+					hobby[3].checked = true;
+					hobby[4].checked = true;
+					hobby[5].checked = true;
+					hobby[6].checked = true;
+					hobby[7].checked = true;
+					hobby[8].checked = true;
+					hobby[9].checked = true;
+					hobby[10].checked = true;
+					hobby[11].checked = true;
+					hobby[12].checked = true;
+				} */
+				if(hobby[i].checked && hobby[i].value != "전체선택" ){
+					checkItem += hobby[i].value + " ";
+				}
+			}
+			document.getElementById('area1').innerHTML = checkItem;
+			
+		}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

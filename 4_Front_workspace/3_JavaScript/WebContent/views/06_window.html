@@ -78,7 +78,8 @@
 				area.innerHTML = 'countdown : ' + count--;
 				
 				if(count < 0){
-					area.innerHTML = '종료!';
+					clearInterval(intervalId);
+					area.innerHTML += '종료!'; // clearInterval(intervalId);가 없으면 종료로 계속 덮어쓰고 있어서 종료된것이 아님
 				}
 			},1000);
 			
@@ -86,43 +87,7 @@
 	</script>	
 		
 		
-		
-			
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
