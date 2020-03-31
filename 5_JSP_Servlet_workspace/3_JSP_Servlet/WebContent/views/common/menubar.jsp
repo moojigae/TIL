@@ -108,9 +108,11 @@
 			if(msg != 'null'){
 				alert(msg);
 			}
-		})
+		});
 		
-		
+		function myPage(){
+			location.href='<%= request.getContextPath() %>/myPage.me';
+		}
 		
 		
 		

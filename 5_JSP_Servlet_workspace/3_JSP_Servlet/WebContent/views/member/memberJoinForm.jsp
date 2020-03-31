@@ -56,7 +56,7 @@
 				<tr>
 					<td>연락처</td>
 					<td>
-						<input type="tel" maxlength="11" name="+" placeholder="(-없이)01012345678">
+						<input type="tel" maxlength="11" name="phone" placeholder="(-없이)01012345678">
 					</td>
 				</tr>
 				<tr>
@@ -95,5 +95,11 @@
 			</div>
 		</form>
 	</div>
+	
+	<script>
+		function checkId(){
+			window.open('idCheckForm.jsp','checkForm','width=500, height=300');	
+		}
+	</script>
 </body>
 </html>

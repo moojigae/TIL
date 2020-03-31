@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import member.model.vo.Member;
@@ -85,6 +86,100 @@ public class MemberDAO {
 			pstmt.setString(8, m.getInterest());
 			
 			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int idCheck(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("idCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+	}
+
+	public Member selectMember(Connection conn, String loginUserId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		
+		String query = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, loginUserId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				member =  new Member(rset.getString("user_id"),
+									rset.getString("user_pwd"),
+									rset.getString("user_name"),
+									rset.getString("nickName"),
+									rset.getString("phone"),
+									rset.getString("email"),
+									rset.getString("address"),
+									rset.getString("interest"),
+									rset.getDate("enroll_date"),
+									rset.getDate("modify_date"),
+									rset.getString("status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
+	}
+
+	public int updateMember(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateMember");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getUserName());
+			pstmt.setString(2, member.getNickName());
+			pstmt.setString(3, member.getPhone());
+			pstmt.setString(4, member.getEmail());
+			pstmt.setString(5, member.getAddress());
+			pstmt.setString(6, member.getInterest());
+			pstmt.setString(7, member.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -36,4 +36,34 @@ public class MemberService {
 		return result;
 	}
 
+	public int idCheck(String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDAO().idCheck(conn, userId);
+		close(conn); // commit이나 rollback할게 없기 때문에 바로 connection 닫아줌
+		return result;
+		
+	}
+
+	public Member selectMember(String loginUserId) {
+		Connection conn = getConnection();
+		
+		Member member = new MemberDAO().selectMember(conn, loginUserId);
+		close(conn);
+		return member;
+	}
+
+	public int updateMember(Member member) {
+		Connection conn = getConnection();
+		int result = new MemberDAO().updateMember(conn, member);
+		
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 }
