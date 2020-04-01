@@ -32,6 +32,12 @@
 		color: white; height: 25px; width: 100px; border-radius: 15px;
 	}
 	#myPageBtn{background: #B2CCFF;} 
+	
+	.wrap{background:white; width: 100%; height: 50px;}
+	.menu{background:white; color:navy; text-align:center; font-weight:bold;
+			vertical-align:middle; width:150px;height:50px; display:table-cell;}
+	nav{width:600px; margin-left:auto; margin-right:auto;}
+	.menu:hover{backgroung:beige; color: orangered; font-weight:bold;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -39,7 +45,7 @@
 	<div class="loginArea">
 	<% if(loginUser == null){ %>
 		<form id="loginForm" action="<%= request.getContextPath() %>/login.me" method="post" onsubmit="return validate();">
-		<!-- url을 바라보고 있기 때문에 xml이나 anotaion에 등록해야함 -->
+		<!-- url을 바라보고 있기 때문에 xml이나 anotation에 등록해야함 -->
 			<table>
 				<tr>
 					<td><label>ID : </label></td>
@@ -73,6 +79,22 @@
 			</div>
 		<% } %>
 	</div>
+	
+	<br clear="all">
+	<br>
+	
+	<div class="wrap">
+		<nav>
+			<div class="menu" onclick="goHome();">HOME</div>
+			<div class="menu" onclick="goNotice();">공지사항</div>
+			<div class="menu" onclick="goBoard();">게시판</div>
+			<div class="menu" onclick="goThumbnail();">사진게시판</div>
+		</nav>
+	</div>
+	
+	
+	
+	
 	
 	<script>
 		function validate(){
@@ -114,7 +136,18 @@
 			location.href='<%= request.getContextPath() %>/myPage.me';
 		}
 		
-		
+		function goHome(){
+			location.href="<%= request.getContextPath() %>/index.jsp";
+		}
+		function goNotice(){
+			location.href="<%= request.getContextPath() %>/list.no";
+		}
+		function goBoard(){
+			location.href="<%= request.getContextPath() %>/list.bo";
+		}
+		function goThumbnail(){
+			location.href="<%= request.getContextPath() %>/list.th";
+		}
 		
 	</script>
 
