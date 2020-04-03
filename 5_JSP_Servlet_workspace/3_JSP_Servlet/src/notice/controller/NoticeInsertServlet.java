@@ -40,11 +40,15 @@ public class NoticeInsertServlet extends HttpServlet {
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		String date = request.getParameter("date");
 		String content = request.getParameter("content");
-	
+		
 		Date sqlDate = null;
+		System.out.println("date : " + date);
+		
 		if(date.equals("")) {
+			//System.out.println("안들어왔다");
 			sqlDate = new Date(new GregorianCalendar().getTimeInMillis());
 		} else {
+			//System.out.println("들어왔다");
 			String[] dateArr = date.split("-");
 			int year = Integer.parseInt(dateArr[0]);
 			int month = Integer.parseInt(dateArr[1])-1;
@@ -56,14 +60,14 @@ public class NoticeInsertServlet extends HttpServlet {
 		Notice n = new Notice(title, content, userId, sqlDate);
 		int result = new NoticeService().insertNotice(n);
 		
-		if(result > 0 ) {
+		if(result > 0) {
 			response.sendRedirect("list.no");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			request.setAttribute("msg", "공지사항 등록에 실패했습니다.");
 			view.forward(request, response);
-					
 		}
+		
 	}
 
 	/**

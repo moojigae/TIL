@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="notice.model.vo.Notice" %>
-<% Notice notice = (Notice)request.getAttribute("notice"); %>
+<%
+	Notice notice = (Notice)request.getAttribute("notice");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,19 +26,28 @@
 		<br>
 		<h2 align="center">공지사항</h2>
 		<div class="tableArea">
-			<form action="views/notice/noticeUpdateForm.jsp" id="detailForm" name="detailForm" readonly>
+			<form action="views/notice/noticeUpdateForm.jsp" id="detailForm" name="detailForm">
 				<table>
 					<tr>
 						<th>제목</th>
-						<td colspan="3"><input type="text" size="50" name="title" value="<%= notice.getnTitle() %>" readonly></td>
+						<td colspan="3">
+							<input type="hidden" size="50" name="title" value="<%= notice.getnTitle() %>">
+							<input type="hidden" size="50" name="no" value="<%= notice.getnNo() %>">
+							<!-- noticeUpdateForm으로 보낼 때 공지사항 번호를 같이 보내야 다시 servlet으로 공지사항 번호를 보낼 수 있으므로 
+								 hidden에 같이 넣어둠 -->
+							<%= notice.getnTitle() %>
+						</td>				
 					</tr>
 					<tr>
 						<th>작성자</th>
 						<td>
-							<%= loginUser.getNickName() %>
+							운영자
 						</td>
 						<th>작성일</th>
-						<td><input type="date" name="date" value="<%= notice.getnDate() %>" readonly></td>
+						<td>
+							<input type="hidden" name="date" value="<%= notice.getnDate() %>">
+							<%= notice.getnDate() %>
+						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
@@ -44,7 +55,6 @@
 					<tr>
 						<td colspan="4">
 							<textarea name="content" cols="60" rows="15" style="resize:none;" readonly><%= notice.getnContent() %></textarea>
-							<%= notice.getnContent() %>
 						</td>
 					</tr>
 				</table>
@@ -52,11 +62,32 @@
 				<br>
 				
 				<div align="center">
-					<button type="submit" id="insertNoBtn">등록</button>
+				<% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+					<button type="submit" id="updateNoBtn">수정</button>
+					<button type="button" id="deleteNoBtn" onclick="deleteNo();">삭제</button>
+				<% } %>
 					<div onclick="location.href='javascript:history.go(-1);'" id="cancelBtn">취소</div>
 				</div>
 			</form>
 		</div>
 	</div>
+	<script>
+		function deleteNo(){
+			var bool = confirm('정말 삭제하시겠습니까?');
+			
+			if(bool){
+				location.href="<%= request.getContextPath() %>/delete.no?no=" + <%= notice.getnNo() %>;
+			}
+		}
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

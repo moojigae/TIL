@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+
 	String userId = request.getParameter("userId");
 	String userName = request.getParameter("userName");
 	String nickName = request.getParameter("nickName");
@@ -9,9 +10,9 @@
 	String email = !request.getParameter("email").equals("-") ? request.getParameter("email") : "";
 	String address = !request.getParameter("address").equals("-") ? request.getParameter("address") : "";
 	
-	String[] checkedInterest = new String[6]; 
+	String[] checkedInterest = new String[6];
 	if(!request.getParameter("interest").equals("-")){
-		String[] interests = request.getParameter("interest").split(", ");
+		String[] interests = request.getParameter("interest").split(",");
 		
 		for(int i = 0; i < interests.length; i++){
 			switch(interests[i]){
@@ -24,8 +25,7 @@
 			}
 		}
 	}
-	
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +57,9 @@
 			<table>
 				<tr>
 					<td width="200px"><label id="must">*</label> 아이디</td>
-					<td><input type="text" name="joinUserId" style="background:lightgray;" readonly value="<%= userId %>"></td>
+					<td>
+						<input type="text" name="joinUserId" style="background:lightgray;" readonly value="<%= userId %>">
+					</td>
 				</tr>
 				<tr>
 					<td><label id="must">*</label> 이름</td>
@@ -106,7 +108,7 @@
 			
 			<div class="btns" align="center">
 				<input id="updateBtn" type="submit" value="수정하기">
-				<div id="cancelBtn" onclick="location.href='<%= request.getContextPath() %>/myPage.me'">취소하기</div>
+				<div id="cancelBtn" onclick="location.href='javascript:history.go(-1)'">취소하기</div>
 			</div>
 		</form>
 	</div>

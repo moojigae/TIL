@@ -26,20 +26,25 @@
 				<table>
 					<tr>
 						<th>제목</th>
-						
-						<td colspan="3"></td>				
+							
+						<td colspan="3">
+							<input type="hidden" name="no" value="<%= request.getParameter("no") %>">
+							<input type="text" name="title" size=50 value="<%= request.getParameter("title") %>">
+						</td>				
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td></td>
+						<td>운영자</td>
 						<th>작성일</th>
-						<td></td>
+						<td><input type="date" name="date" value="<%= request.getParameter("date") %>"></td>
 					</tr>
 					<tr>
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td colspan="4"></td>
+						<td colspan="4">
+							<textarea rows="15" cols="60" name="content" style="resize: none;"><%= request.getParameter("content") %></textarea>
+						</td>
 					</tr>
 				</table>
 				

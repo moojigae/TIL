@@ -1,7 +1,5 @@
 package member.model.service;
 
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -20,11 +18,11 @@ public class MemberService {
 		return loginUser;
 	}
 
-	public int insertMember(Member m) {
+	public int insertMember(Member member) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MemberDAO().insertMember(conn, m);
+		int result = new MemberDAO().insertMember(conn, member);
 		
 		if(result > 0) {
 			commit(conn);
@@ -40,9 +38,8 @@ public class MemberService {
 		Connection conn = getConnection();
 		
 		int result = new MemberDAO().idCheck(conn, userId);
-		close(conn); // commit이나 rollback할게 없기 때문에 바로 connection 닫아줌
+		close(conn);
 		return result;
-		
 	}
 
 	public Member selectMember(String loginUserId) {
@@ -55,13 +52,15 @@ public class MemberService {
 
 	public int updateMember(Member member) {
 		Connection conn = getConnection();
+		
 		int result = new MemberDAO().updateMember(conn, member);
 		
-		if(result>0) {
+		if(result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
+		
 		close(conn);
 		return result;
 	}

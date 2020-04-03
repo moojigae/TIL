@@ -98,8 +98,25 @@
 	
 	<script>
 		function checkId(){
-			window.open('idCheckForm.jsp','checkForm','width=500, height=300');	
+			window.open('idCheckForm.jsp', 'checkForm', 'width=500, height=300');
 		}
 	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

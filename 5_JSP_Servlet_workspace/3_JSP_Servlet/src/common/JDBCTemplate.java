@@ -15,18 +15,19 @@ public class JDBCTemplate {
 	
 	public static Connection getConnection() {
 		Connection conn = null;
-		Properties prop= null;
+		Properties prop = null;
 		
 		String fileName = JDBCTemplate.class.getResource("/sql/driver.properties").getPath();
-
+		
 		try {
 			prop = new Properties();
 			prop.load(new FileReader(fileName));
 			
 			Class.forName(prop.getProperty("driver"));
-			conn = DriverManager.getConnection(prop.getProperty("url"),
-												prop.getProperty("username"),
-												prop.getProperty("password"));
+			conn = DriverManager.getConnection(prop.getProperty("url"), 
+											   prop.getProperty("username"), 
+											   prop.getProperty("password"));
+			
 			conn.setAutoCommit(false);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

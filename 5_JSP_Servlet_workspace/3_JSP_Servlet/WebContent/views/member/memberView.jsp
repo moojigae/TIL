@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%
-    Member member = (Member)request.getAttribute("member");
-    
-    String userId = member.getUserId();
-    String userName = member.getUserName();
-    String nickName = member.getNickName();
-    String phone = member.getPhone() != null ? member.getPhone() : "-";
-    String email = member.getEmail() != null ? member.getEmail() : "-";
-    String address = member.getAddress() != null ? member.getAddress() : "-";
-    String interest = member.getInterest() != null ? member.getInterest() : "-";
+	Member member = (Member)request.getAttribute("member");
+
+	String userId = member.getUserId();
+	String userName = member.getUserName();
+	String nickName = member.getNickName();
+	String phone = member.getPhone() != null ? member.getPhone() : "-";
+	String email = member.getEmail() != null ? member.getEmail() : "-";
+	String address = member.getAddress() != null ? member.getAddress() : "-";
+	String interest = member.getInterest() != null ? member.getInterest() : "-";
 %>
 <!DOCTYPE html>
 <html>
@@ -47,8 +46,7 @@
 					<td width="200px">아이디</td>
 					<td width="250px">
 						<%= userId %>
-						<input type="hidden" name="userId" value="<%= userId%>">
-						
+						<input type="hidden" name="userId" value="<%= userId %>">
 					</td>
 				</tr>
 				<tr>
@@ -62,28 +60,28 @@
 					<td>닉네임</td>
 					<td>
 						<%= nickName %>
-					 <input type="hidden" maxlength="15" name="nickName" value="<%= nickName %>">
+						<input type="hidden" name="nickName" value="<%= nickName %>">
 					</td>
 				</tr>
 				<tr>
 					<td>연락처</td>
 					<td>
-					<%= phone %>
-						<input type="hidden" maxlength="11" name="phone" placeholder="(-없이)01012345678" value="<%= phone %>">
+						<%= phone %>
+						<input type="hidden" name="phone" value="<%= phone %>">
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
-					<%= email %>
-					<input type="hidden" name="email" value="<%= email %>">
+						<%= email %>
+						<input type="hidden" name="email" value="<%= email %>">
 					</td>
 				</tr>
 				<tr>
 					<td>주소</td>
 					<td>
-					<%= address %>
-					<input type="hidden" name="address" value="<%= address %>">
+						<%= address %>
+						<input type="hidden" name="address" value="<%= address %>">
 					</td>
 				</tr>
 				<tr>
@@ -91,6 +89,18 @@
 					<td>
 						<%= interest %>
 						<input type="hidden" name="interest" value="<%= interest %>">
+						<!-- <input type="checkbox" id="sports" name="interest" value="운동">
+						<label for="sports">운동</label>
+						<input type="checkbox" id="climbing" name="interest" value="등산">
+						<label for="climbing">등산</label>
+						<input type="checkbox" id="fishing" name="interest" value="낚시">
+						<label for="fishing">낚시</label>
+						<input type="checkbox" id="cooking" name="interest" value="요리">
+						<label for="cooking">요리</label>
+						<input type="checkbox" id="game" name="interest" value="게임">
+						<label for="game">게임</label>
+						<input type="checkbox" id="etc" name="interest" value="기타">
+						<label for="etc">기타</label> -->
 					</td>
 				</tr>
 			</table>
@@ -101,7 +111,7 @@
 				<div id="pwdUpdateBtn" onclick="location.href='views/member/pwdUpdateForm.jsp'">비밀번호 변경</div>
 				<input id="updateBtn" type="submit" value="내 정보 수정">
 				
-				<hr width ="70%">
+				<hr width="70%">
 				
 				<div id="goMain" onclick="location.href='<%= request.getContextPath() %>/index.jsp'">메인으로</div>
 				<div id="deleteBtn" onclick="deleteMember();">탈퇴하기</div>

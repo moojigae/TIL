@@ -32,8 +32,6 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 세션에 내 정보를 가지고 화면에 뿌리는 경우 정보 수정 후 db에 수정하는 데이터를 넣은 경우
-		// 화면에는 세션의 정보가 뿌려지기 때문에 db에 수정된 내용이 화면에는 보이지 않는 문제점이 있음
 		HttpSession session = request.getSession();
 		Member sessionMember = (Member)session.getAttribute("loginUser");
 		String loginUserId = sessionMember.getUserId();
@@ -46,12 +44,11 @@ public class MyPageServlet extends HttpServlet {
 			request.setAttribute("member", member);
 		} else {
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "회원조회에 실패했습니다");
+			request.setAttribute("msg", "회원조회에 실패했습니다.");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
 	}
 
 	/**

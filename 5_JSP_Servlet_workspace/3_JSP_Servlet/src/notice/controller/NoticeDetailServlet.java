@@ -31,18 +31,23 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String no = request.getParameter("no");
 		
-		Notice notice = new NoticeService().noticeDetail(no);
+		// 현재 영상은 NoticeDetailServlet의 답안 영상으로 음성은 포함되어 있지 않습니다.
+		// 흐름 이해에 도움이 되시길 바랍니다.
+		
+		int no = Integer.parseInt(request.getParameter("no")); 
+		
+		Notice n = new NoticeService().selectNotice(no); 
 		
 		String page = null;
-		if(notice != null) {
+		if(n != null) {
 			page = "views/notice/noticeDetailView.jsp";
-			request.setAttribute("notice", notice);
+			request.setAttribute("notice", n);
 		} else {
-			page ="views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 상세조회에 실패했습니다");
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 조회에 실패했습니다.");
 		}
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
