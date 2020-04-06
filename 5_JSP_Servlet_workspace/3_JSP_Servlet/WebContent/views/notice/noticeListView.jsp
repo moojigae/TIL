@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="notice.model.vo.Notice, java.util.ArrayList"%>
-<% ArrayList<Notice> list = (ArrayList)request.getAttribute("list"); %>
+<% ArrayList<Notice> list = (ArrayList) request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +36,8 @@
 				<tr>
 					<td colspan="5">존재하는 공지사항이 없습니다.</td>
 				</tr>
-				<% } else{ 
-						for(Notice n : list){
+				<% } else { 
+					for(Notice n : list) {
 				%>
 				<tr>
 					<td><%= n.getnNo() %></td>
@@ -46,7 +46,7 @@
 					<td><%= n.getnCount() %></td>
 					<td><%= n.getnDate() %></td>
 				</tr>
-				<% 		}
+				<%		}
 					}
 				%>
 			</table>
@@ -55,34 +55,21 @@
 		<div class="searchArea" align="center">
 			<% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 				<button onclick="location.href='views/notice/noticeInsertForm.jsp'" id="writeNoBtn">글쓰기</button>
-			<% } %>
+				<% } %>
 		</div>
 		
 		<script>
 			$(function(){
 				$('#listArea td').mouseenter(function(){
-					$(this).parent().css({'background':'darkgray', 'cursor':'pointer'});
+					$(this).parent().css({'background' : 'darkgray', 'cursor':'pointer'});
 				}).mouseout(function(){
-					$(this).parent().css('background', 'none');
+					$(this).parent().css('background' , 'none');
 				}).click(function(){
 					var num = $(this).parent().children().eq(0).text();
 					location.href="<%= request.getContextPath() %>/detail.no?no=" + num;
 				});
 			});
 		</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 	</div>

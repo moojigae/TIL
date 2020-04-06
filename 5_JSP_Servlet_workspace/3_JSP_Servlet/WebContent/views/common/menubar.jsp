@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	//System.out.println(loginUser);
+	// System.out.println(loginUser);
+	
 	String msg = (String)request.getAttribute("msg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -11,6 +13,7 @@
 <meta charset="UTF-8">
 <title>JSP&Servlet</title>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.4.1.min.js"></script>
+<!-- getContextPath()는 WebContent아래를 보게됨 -->
 <style>
 	body{ 
 		background:url('<%= request.getContextPath() %>/images/bg.png') no-repeat center center fixed;
@@ -28,15 +31,13 @@
 		float: right; display: inline-block; text-align: center; background: #D1B2FF;
 		color: white; height: 25px; width: 100px; border-radius: 15px;
 	}
-	#myPageBtn{background: #B2CCFF;}
+	#myPageBtn{background: #B2CCFF;} 
 	
-	.wrap{background: white; width: 100%; height: 50px;}
-	.menu{
-		background: white; color: navy; text-align: center; font-weight: bold;
-		vertical-align: middle; width: 150px; height: 50px; display: table-cell;
-	}
-	nav{width: 600px; margin-left: auto; margin-right: auto;}
-	.menu:hover{background: beige; color: orangered; font-weight: bold; cursor: pointer;}
+	.wrap{background:white; width: 100%; height: 50px;}
+	.menu{background:white; color:navy; text-align:center; font-weight:bold;
+			vertical-align:middle; width:150px;height:50px; display:table-cell;}
+	nav{width:600px; margin-left:auto; margin-right:auto;}
+	.menu:hover{backgroung:beige; color: orangered; font-weight:bold;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -44,6 +45,7 @@
 	<div class="loginArea">
 	<% if(loginUser == null){ %>
 		<form id="loginForm" action="<%= request.getContextPath() %>/login.me" method="post" onsubmit="return validate();">
+		<!-- url을 바라보고 있기 때문에 xml이나 anotation에 등록해야함 -->
 			<table>
 				<tr>
 					<td><label>ID : </label></td>
@@ -66,15 +68,16 @@
 				<div id="loginBtn"><input type="submit" value="로그인"></div>
 			</div>
 		</form>
-	<% } else{ %>
-		<div id="userInfo" align="right">
-			<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
-			<div class="btns">
-				<div id="myPageBtn" onclick="myPage();">내 정보보기</div>
-				<div id="logoutBtn" onclick="logout();">로그아웃</div>
+		<!-- 로그인 된 후 -->
+		<% } else {%>
+			<div id="userInfo" align="center">
+				<label><%= loginUser.getUserName() %>님의 방문을 환영합니다.</label>
+				<div class="btns">
+					<div id="myPageBtn" onclick="myPage();">내 정보보기</div>
+					<div id="logoutBtn" onclick="logout();">로그아웃</div>
+				</div>
 			</div>
-		</div>
-	<% } %>
+		<% } %>
 	</div>
 	
 	<br clear="all">
@@ -89,6 +92,10 @@
 		</nav>
 	</div>
 	
+	
+	
+	
+	
 	<script>
 		function validate(){
 			if($('#userId').val().trim().length == 0){
@@ -96,8 +103,7 @@
 				$('#userId').focus();
 				
 				return false;
-			}
-			
+			} 
 			if($('#userPwd').val().trim().length == 0){
 				alert('비밀번호를 입력해주세요');
 				$('#userPwd').focus();
@@ -117,8 +123,9 @@
 		}
 		
 		var msg = "<%= msg %>";
-		// var msg = 'null';
-		// var msg = '회원가입에 성공했습니다.';
+		// ""으로 안감싸는 경우
+		// var msg = null;
+		// var msg = 회원가입에 성공했습니다.
 		$(function(){
 			if(msg != 'null'){
 				alert(msg);
@@ -141,13 +148,24 @@
 		function goThumbnail(){
 			location.href="<%= request.getContextPath() %>/list.th";
 		}
+		
 	</script>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 </body>
 </html>

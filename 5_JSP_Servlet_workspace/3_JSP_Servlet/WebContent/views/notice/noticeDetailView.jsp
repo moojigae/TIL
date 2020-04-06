@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="notice.model.vo.Notice" %>
-<%
-	Notice notice = (Notice)request.getAttribute("notice");
-%>
+<% Notice notice = (Notice)request.getAttribute("notice"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,17 +24,14 @@
 		<br>
 		<h2 align="center">공지사항</h2>
 		<div class="tableArea">
-			<form action="views/notice/noticeUpdateForm.jsp" id="detailForm" name="detailForm">
+			<form action="views/notice/noticeUpdateForm.jsp" id="detailForm" name="detailForm" readonly>
 				<table>
 					<tr>
 						<th>제목</th>
 						<td colspan="3">
-							<input type="hidden" size="50" name="title" value="<%= notice.getnTitle() %>">
-							<input type="hidden" size="50" name="no" value="<%= notice.getnNo() %>">
-							<!-- noticeUpdateForm으로 보낼 때 공지사항 번호를 같이 보내야 다시 servlet으로 공지사항 번호를 보낼 수 있으므로 
-								 hidden에 같이 넣어둠 -->
-							<%= notice.getnTitle() %>
-						</td>				
+						<input type="hidden" size="50" name="title" value="<%= notice.getnTitle() %>">
+						<%= notice.getnTitle() %>">
+						</td>
 					</tr>
 					<tr>
 						<th>작성자</th>
@@ -45,8 +40,8 @@
 						</td>
 						<th>작성일</th>
 						<td>
-							<input type="hidden" name="date" value="<%= notice.getnDate() %>">
-							<%= notice.getnDate() %>
+						<input type="hidden" name="date" value="<%= notice.getnDate() %>">
+						<%= notice.getnDate() %>
 						</td>
 					</tr>
 					<tr>
@@ -71,23 +66,5 @@
 			</form>
 		</div>
 	</div>
-	<script>
-		function deleteNo(){
-			var bool = confirm('정말 삭제하시겠습니까?');
-			
-			if(bool){
-				location.href="<%= request.getContextPath() %>/delete.no?no=" + <%= notice.getnNo() %>;
-			}
-		}
-		
-	</script>
-	
-	
-	
-	
-	
-	
-	
-	
 </body>
 </html>

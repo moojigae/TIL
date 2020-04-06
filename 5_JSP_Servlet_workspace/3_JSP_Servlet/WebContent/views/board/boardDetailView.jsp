@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="board.model.vo.*, java.util.ArrayList"%>
-<% Board b = (Board)request.getAttribute("board"); %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,62 +25,38 @@
 		<br>
 		<h2 align="center">게시판 상세보기</h2>
 		<div class="tableArea">
-			<form action="views/board/boardUpdateForm.jsp" id="detailForm" method="post">
+			<form action="<%= request.getContextPath() %>/views/board/boardDetailView.jsp" id="detailForm" method="post">
 				<table>
 					<tr>
 						<th>분야</th>
-						<td>
-							<%= b.getCategory() %>
-							<input type="hidden" name="category" value=<%= b.getCategory() %>>
-						</td>
+						<td></td>
 						<th>제목</th>
-						<td colspan="3">
-							<%= b.getbTitle() %>
-							<input type="hidden" name="bno" value="<%= b.getbId() %>">
-							<input type="hidden" name="title" value="<%= b.getbTitle() %>">
-						</td>
+						<td colspan="3"></td>
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td>
-							<%= b.getbWriter() %>
-						</td>
+						<td></td>
 						<th>조회수</th>
-						<td>
-							<%= b.getbCount() %>
-						</td>
+						<td></td>
 						<th>작성일</th>
-						<td>
-							<%= b.getModifyDate() %>
-						</td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td colspan="6"><textarea cols="60" rows="15" name="content" style="resize:none;" readonly><%= b.getbContent() %></textarea></td>
+						<td colspan="6">
+							<textarea cols="60" rows="15" style="resize:none;" readonly></textarea>
+						</td>
 					</tr>
 				</table>
 				
 				<div align="center">
-				<% if(loginUser != null && loginUser.getNickName().equals(b.getbWriter())){ %>
 					<input type="submit" id="updateBtn" value="수정">
-					<input type="button" onclick="deleteBoard();" id="deleteBtn" value="삭제">
-				<% } %>
+					<input type="submit" onclick="deleteBoard();" id="deleteBtn" value="삭제">
 					<div onclick="location.href='<%= request.getContextPath() %>/list.bo'" id="menuBtn" >메뉴로</div>
 				</div>
 			</form>
-			
-			<script>
-				function deleteBoard(){
-					var bool = confirm('정말 삭제하시겠습니까?');
-					
-					if(bool){
-						$('#detailForm').attr('action', '<%=request.getContextPath() %>/delete.bo');
-						$('#detailForm').submit();
-					}
-				}
-			</script>
 		</div>
 	</div>
 </body>
