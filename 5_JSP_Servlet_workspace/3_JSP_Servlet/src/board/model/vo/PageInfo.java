@@ -84,4 +84,6 @@ public class PageInfo {
 		return "PageInfo [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
 				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + ", boardLimit=" + boardLimit + "]";
 	}
+	
+	
 }

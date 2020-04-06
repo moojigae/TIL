@@ -133,5 +133,4 @@ public class Member {
 				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
 				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
-	
 }

@@ -15,7 +15,9 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class InsertMemberServlet
  */
-@WebServlet("/insert.me")
+@WebServlet(urlPatterns = "/insert.me", name = "InsertMemberServlet")
+// "/insert.me" 하나만 있을 때는 urlPatterns 생략이 가능 했지만 name을 넣어서
+// 들어가는 이름으로 맵핑시키기 때문에 urlPatterns와 name이 꼭 들어가야한다
 public class InsertMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,46 +34,40 @@ public class InsertMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("joinUserId");
 		String userPwd = request.getParameter("joinUserPwd");
+		String checkPwd = request.getParameter("joinUserPwd2");
 		String userName = request.getParameter("userName");
 		String nickName = request.getParameter("nickName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		String irr[] = request.getParameterValues("interest");
+		String[] interest = request.getParameterValues("interest");
 		
-		String interest = "";
-
-		if (irr != null) {
-			for (int i = 0; i < irr.length; i++) {
-				if (i == irr.length - 1)
-					interest += irr[i];
-				else
-					interest += irr[i] + ",";
-			}
-		}
+		String interests = String.join(", ", interest);
+		Member m = new Member(userId,userPwd,userName,nickName,phone,email,address,interests ,null,null,null);
+	
+//		System.out.println(m);
 		
-		Member member = new Member(userId, userPwd, userName, nickName, phone, email, address, interest, null, null, null);
+		int result = new MemberService().insertMember(m);
 		
-		int result = new MemberService().insertMember(member);
-		
-		String page = "";
-		String msg = "";
+		String page="";
+		String msg="";
 		if(result > 0) {
 			page = "/";
-			// page = "index.jsp";
 			msg = "회원가입에 성공했습니다.";
 //			request.setAttribute("msg", "회원가입에 성공했습니다.");
+//			
 //			RequestDispatcher view = request.getRequestDispatcher(request.getContextPath());
+//			
 //			view.forward(request, response);
 		} else {
 			page = "views/common/errorPage.jsp";
-			msg = "회원가입에 실패했습니다.";
+			msg = "회원가입에 실패했습니다";
 //			request.setAttribute("msg", "회원가입에 실패했습니다.");
-//			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+//			RequestDispatcher view = request.getRequestDispatcher("views/comon/errorPage.jsp");
 //			view.forward(request, response);
 		}
 		

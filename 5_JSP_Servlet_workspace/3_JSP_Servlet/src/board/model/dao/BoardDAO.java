@@ -17,7 +17,7 @@ import board.model.vo.Attachment;
 import board.model.vo.Board;
 
 public class BoardDAO {
-	
+
 	private Properties prop = new Properties();
 	
 	public BoardDAO() {
@@ -30,7 +30,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
-
+			
 	public int getListCount(Connection conn) {
 		// select count(*) from board where status='Y' and btype=1
 		Statement stmt = null;
@@ -44,23 +44,22 @@ public class BoardDAO {
 			rset = stmt.executeQuery(query);
 			
 			if(rset.next()) {
-				result = rset.getInt(1);
+				result = rset.getInt(1); // 첫번째를 가지고 와라
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(stmt);
 		}
-		
 		return result;
 	}
 
 	public ArrayList<Board> selectList(Connection conn, int currentPage, int boardLimit) {
-		
+		ArrayList<Board> list = new ArrayList<Board>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<Board> list = null;
 		
 		String query = prop.getProperty("selectList");
 		
@@ -73,7 +72,6 @@ public class BoardDAO {
 			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
-			list = new ArrayList<Board>();
 			
 			while(rset.next()) {
 				Board b = new Board(rset.getInt("bid"),
@@ -94,97 +92,14 @@ public class BoardDAO {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return list;
-	}
-
-	public int insertBoard(Connection conn, Board b) {
-		// insert into board values(seq_bid.nextval, 1, ?, ?, ?, ?, default, sysdate, sysdate, default)
-		
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("insertBoard");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, Integer.parseInt(b.getCategory()));
-			pstmt.setString(2, b.getbTitle());
-			pstmt.setString(3, b.getbContent());
-			pstmt.setString(4, b.getbWriter());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public int updateCount(Connection conn, int bid) {
-		// update board set bcount = bcount + 1 where bid = ?
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("updateCount");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, bid);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);//......;;;;;;;
-		}
-		
-		return result;
-	}
-
-	public Board selectBoard(Connection conn, int bid) {
-		// select * from bdetail where bid = ?
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		Board board = null;
-		
-		String query = prop.getProperty("selectBoard");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, bid);
-			
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				board = new Board(rset.getInt("bid"),
-								  rset.getInt("btype"),
-								  rset.getString("cname"),
-								  rset.getString("btitle"),
-								  rset.getString("bcontent"),
-								  rset.getString("nickName"),
-								  rset.getInt("bcount"),
-								  rset.getDate("create_date"),
-								  rset.getDate("modify_date"),
-								  rset.getString("status"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-
-		return board;
 	}
 
 	public ArrayList selectBList(Connection conn) {
 		// select * from blist where btype=2
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<Board> list = null;
+		ArrayList<Board> list = null; 
 		
 		String query = prop.getProperty("selectBList");
 		
@@ -193,6 +108,8 @@ public class BoardDAO {
 			rset = stmt.executeQuery(query);
 			
 			list = new ArrayList<Board>();
+			
+			System.out.println("DAO query : " + query);
 			
 			while(rset.next()) {
 				list.add(new Board(rset.getInt("bid"),
@@ -204,47 +121,49 @@ public class BoardDAO {
 								   rset.getInt("bcount"),
 								   rset.getDate("create_date"),
 								   rset.getDate("modify_date"),
-								   rset.getString("status")));
+								   rset.getString("status")
+								   ));
 			}
+			
+			System.out.println("DAO list : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(stmt);
 		}
-		
 		return list;
 	}
 
 	public ArrayList selectFList(Connection conn) {
 		// select * from attachment where file_level=0 and status='Y'
 		Statement stmt = null;
-		ResultSet rs = null;
+		ResultSet rset = null;
 		ArrayList<Attachment> list = null;
 		
-		String query = prop.getProperty("selectFList");		
+		String query = prop.getProperty("selectFList");
 		
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(query);
-			
+			rset = stmt.executeQuery(query);
+
 			list = new ArrayList<Attachment>();
 			
-			while(rs.next()) {
-				list.add(new Attachment(rs.getInt("bid"), rs.getString("change_name")));
-			}
+			while(rset.next()) {
+				list.add(new Attachment(rset.getInt("bid"), rset.getString("change_name")));
+			} 
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close(rs);
+		}finally {
+			close(rset);
 			close(stmt);
 		}
-		
 		return list;
 	}
 
 	public int insertAttachment(Connection conn, ArrayList<Attachment> fileList) {
-		// insert into attachment values(seq_fid.nextval, seq_bid.currval, ?, ?, ?, sysdate, ?, default, default)
+		// insert into attachment values(seq_fid.nextval, seq_bid.currval, ?,?,?, sysdate, ?, default)
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -262,12 +181,12 @@ public class BoardDAO {
 				
 				result += pstmt.executeUpdate();
 			}
+			
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close(pstmt);
 		}
-		
 		return result;
 	}
 
@@ -283,8 +202,9 @@ public class BoardDAO {
 			pstmt.setString(1, b.getbTitle());
 			pstmt.setString(2, b.getbContent());
 			pstmt.setString(3, b.getbWriter());
-			
+					
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -300,8 +220,7 @@ public class BoardDAO {
 		ResultSet rset = null;
 		ArrayList<Attachment> list = null;
 		
-		String query = prop.getProperty("selectThumnail");
-		
+		String query = prop.getProperty("selectThumbnail");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bid);
@@ -314,7 +233,7 @@ public class BoardDAO {
 				Attachment at = new Attachment();
 				at.setfId(rset.getInt("fId"));
 				at.setOriginName(rset.getString("origin_name"));
-				at.setChangeName(rset.getString("change_name"));
+				at.setOriginName(rset.getString("change_name"));
 				at.setFilePath(rset.getString("file_path"));
 				at.setUploadDate(rset.getDate("upload_date"));
 				
@@ -326,6 +245,7 @@ public class BoardDAO {
 			close(rset);
 			close(pstmt);
 		}
+		
 		
 		return list;
 	}

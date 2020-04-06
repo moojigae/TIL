@@ -12,6 +12,7 @@ public class NoticeService {
 
 	public ArrayList<Notice> selectList() {
 		Connection conn = getConnection();
+		
 		ArrayList<Notice> list = new NoticeDAO().selectList(conn);
 		close(conn);
 		
@@ -28,61 +29,42 @@ public class NoticeService {
 			rollback(conn);
 		}
 		close(conn);
-		
 		return result;
 	}
 
-	public Notice selectNotice(int no) {
+	public Notice noticeDetail(String no) {
 		Connection conn = getConnection();
 		
 		NoticeDAO nDAO = new NoticeDAO();
 		
 		int result = nDAO.updateCount(conn, no); // 조회수 업데이트 용
 		
-		Notice n = null;
+		Notice notice = null;
 		if(result > 0) {
-			n = new NoticeDAO().selectNotice(conn, no);
+			notice = new NoticeDAO().noticeDetail(conn, no);
 			
-			if(n != null) {
-				commit(conn);// 이 커밋은 조회수 업데이트에 관한 커밋!
-			} else {
+			if(notice != null) {
+				commit(conn); // 조회수 업데이트에 관한 커밋
+			} else { 
 				rollback(conn);
 			}
 		}
 		
 		close(conn);
-		
-		return n;
+		return notice;
 	}
 
-	public int updateNotice(Notice n) {
+	public int noticeUpdate(Notice n) {
 		Connection conn = getConnection();
-		int result = new NoticeDAO().updateNotice(conn, n);
+		int result = new NoticeDAO().noticeUpdate(conn, n);
 		
-		if(result > 0) {
+		if(result>0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
-		
 		close(conn);
 		return result;
-		
 	}
-
-	public int deleteNotice(int nno) {
-		Connection conn = getConnection();
-		int result = new NoticeDAO().deleteNotice(conn, nno);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
-
+	
 }

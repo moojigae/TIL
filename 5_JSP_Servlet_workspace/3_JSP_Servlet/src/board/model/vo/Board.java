@@ -15,7 +15,7 @@ public class Board {
 	private String status;
 	
 	public Board() {}
-
+	
 	public Board(int bId, int bType, String category, String bTitle, String bContent, String bWriter, int bCount,
 			Date createDate, Date modifyDate, String status) {
 		super();
@@ -118,4 +118,7 @@ public class Board {
 				+ createDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
 	
+	
 }
+
+

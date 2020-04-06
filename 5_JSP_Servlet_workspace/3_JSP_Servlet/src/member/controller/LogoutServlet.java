@@ -19,23 +19,23 @@ public class LogoutServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 세션 무효화
-		// 1. HttpSession의 invalidate()
-		// 2. HttpSession의 setMaxInactiveInterval(0)
-		// 3. web.xml에서 <session-config><session-timeout>0</session-timeout></session-config>
+		// TODO Auto-generated method stub
+		
+			// 세션 무효화
+			// 1. HttpSession의 invalidate()
+			// 2. HttpSession의 setMacInacticeInterval(0)
+			// 3. web.xml에서 <session-config><session-timeout>0</session-timeout></session-config>
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
 		response.sendRedirect(request.getContextPath());
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

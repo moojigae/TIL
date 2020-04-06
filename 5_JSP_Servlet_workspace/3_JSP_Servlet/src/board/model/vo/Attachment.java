@@ -3,13 +3,13 @@ package board.model.vo;
 import java.sql.Date;
 
 public class Attachment {
-	private int fId;
-	private int bId;
-	private String originName;
-	private String changeName;
+	private int fId;  // file id
+	private int bId;  // board id
+	private String originName; // 파일 원본 이름
+	private String changeName; // 파일 랜덤 이름
 	private String filePath;
 	private Date uploadDate;
-	private int fileLevel;
+	private int fileLevel;	// 사진마다 thumbnail에 사용하는 것을 구분 짓는 용도
 	private int downloadCount;
 	private String status;
 	
@@ -113,5 +113,6 @@ public class Attachment {
 				+ ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", fileLevel=" + fileLevel
 				+ ", downloadCount=" + downloadCount + ", status=" + status + "]";
 	}
+	
 	
 }

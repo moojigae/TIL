@@ -34,19 +34,19 @@ public class UpdateMemberServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("joinUserId");
-		String userName = request.getParameter("userName");
+		String userName= request.getParameter("userName");
 		String nickName = request.getParameter("nickName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		String[] irr = request.getParameterValues("interest");
-		
+	
 		String interest = "";
 		if(irr != null) {
-			interest = String.join(",", irr);
+			interest = String.join(", ", irr);
 		}
 		
-		Member member = new Member(userId, null, userName, nickName, phone, email, address, interest, null, null, null);
+		Member member = new Member(userId, null, userName, nickName, phone, email, address, interest, null, null,null);
 		
 		int result = new MemberService().updateMember(member);
 		
