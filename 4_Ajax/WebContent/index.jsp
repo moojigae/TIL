@@ -24,9 +24,11 @@
 			$.ajax({
 				url: 'jQueryTest1.do',
 				data: {name:name}, 
-				type:'post',
 				// 뒤에 있는 name은 위에 변수 선언한 name이고 앞에 name에 담기
+				// 파라미터에 값 담아서 보내기
+				type:'post',
 				success:function(data){
+				// data : 매개변수로 응답 데이터를 받음	
 					console.log('서버 성공 시 호출되는 함수');
 				},
 				error: function(data){
@@ -99,6 +101,107 @@
 			});
 		});
 	</script>
+	
+	<br>
+	<h3>5. 서버로 기본형 데이터 전송, 서버에서 객체 반환</h3>
+	<h4>유저 번호 보내서 해당 유저 정보 가져오기</h4>
+	유저 번호 : <input type="text" id="userNo"><br>
+	<button id="getUserInfoBtn">정보 가져오기</button>
+	<p class="test" id="p3"></p>
+	<textarea class="text" id="textarea3" cols=40 rows=5></textarea>
+	<script>
+		$('#getUserInfoBtn').click(function(){
+			var userNo = $('#userNo').val();
+			
+			$.ajax({
+				url: 'jQueryTest5.do',
+				data: {userNo:userNo},
+				success: function(data){
+					console.log(data);
+					
+					var resultStr = "";
+					
+					if(data != null){
+						resultStr = data.userNo + ", " + data.userName + ", " + data.userNation;
+					} else {
+						resultStr = "해당 회원이 없습니다.";
+					}
+					$('#p3').text(resultStr);
+					$('#textarea3').val(resultStr);
+				}
+			});
+		});
+	</script>
+	
+	<h3>6. 서버로 기본 값 전송, 서버에서 리스트 객체 반환</h3>
+	<h4>유저 번호 요청 ==> 해당 유저가 있는 경우 유저 정보, 없는 경우 전체 가져오기</h4>
+	유저 번호 : <input type="text" id="userNo2"><br>
+	<button id="getUserInfoBtn2">정보 가져오기</button>
+	<p class="test" id="p4"></p>
+	
+	<script>
+		$('#getUserInfoBtn2').click(function(){
+			var userNo = $('#userNo2').val();
+			
+			$.ajax({
+				url: 'jQueryTest6.do',
+				data: {userNo:userNo},
+				success: function(data){
+					console.log(data);
+					
+					
+					var resultStr ="";
+					for(var i in data){
+			// for in 문에서는 배열에서는 index 객체일 때는 키
+						var user = data[i];
+						console.log(user);
+						
+// 						resultStr += user.userNo + ", " + user.userName + ", " + user.userNation + "\n";
+//						개행문자는 textarea에는 됨
+						resultStr += user.userNo + ", " + user.userName + ", " + user.userNation + "<br>";
+					}
+					
+					$('#p4').text(resultStr);
+				}
+			});
+		});
+	</script>
+	
+	<h3>7. 서버로 데이터 여러 개 전송, 서버에서 리스트 객체 반환</h3>
+	<h4>유저 번호 전송 --> 현재 있는 유저 정보만 모아서 출력</h4>
+	<h4>10이상의 숫자는 ','로 쓸 수 없다고 가정</h4>
+	유저 정보(번호,번호,번호) : <input type="text" id="userNo3"><br>
+	<button id="getUserInfoBtn3">정보 가져오기</button>
+	<textarea class="test" id="textarea5" cols=40 rows=5></textarea>
+	<script>
+		$('#getUserInfoBtn3').click(function(){
+			$.ajax({
+				url: 'jQueryTest7.do',
+				data:{userNo:$('#userNo3').val()},
+				success: function(data){
+					console.log(data);
+					
+					var resultStr = "";
+					for(var i in data){
+						var user = data[i];
+						console.log(data);
+						resultStr += user.userNo + ", " + user.userName + ", " + user.userNation + "\n";
+					}
+					$('#textarea5').text(resultStr);
+				}
+			});
+		});
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </body>
 </html>

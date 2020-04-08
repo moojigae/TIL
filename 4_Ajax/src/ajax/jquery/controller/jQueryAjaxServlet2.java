@@ -27,6 +27,7 @@ public class jQueryAjaxServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+		// 한글로 보내면 깨지기 때문에 인코딩 필요
 		response.getWriter().println("서버에서 전송한 값입니다");
 	}
 
