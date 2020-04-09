@@ -1,14 +1,13 @@
 package member.model.dao;
 
-import static common.JDBCTemplate.close;
-
+import static common.JDBCTemplate.*;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
 import member.model.vo.Member;
@@ -20,19 +19,15 @@ public class MemberDAO {
 		String fileName = MemberDAO.class.getResource("/sql/member/member-query.properties").getPath();
 		
 		try {
-			prop.load(new FileReader(fileName));
+			prop.load(new FileReader(fileName));			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public Member loginMember(Member m, Connection conn) {
-		/*
-		 * query : 
-		 * 		select *
-		 * 		from member
-		 * 		where  userId = ? and userPwd = ?
-		 * */
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member loginUser = null;
@@ -44,9 +39,10 @@ public class MemberDAO {
 			pstmt.setString(1, m.getUserId());
 			pstmt.setString(2, m.getUserPwd());
 			
-			rset = pstmt.executeQuery(); // rset은 무조건 0~1개 담겨져 있음 
+			rset = pstmt.executeQuery();
+			
 			if(rset.next()) {
-				loginUser = new Member(rset.getString("user_Id"),
+				loginUser = new Member(rset.getString("user_id"),
 										rset.getString("user_pwd"),
 										rset.getString("user_name"),
 										rset.getString("nickName"),
@@ -67,8 +63,8 @@ public class MemberDAO {
 		
 		return loginUser;
 	}
-	
-	public int insertMember(Connection conn, Member m) {
+
+	public int insertMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -76,16 +72,17 @@ public class MemberDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, m.getUserId());
-			pstmt.setString(2, m.getUserPwd());
-			pstmt.setString(3, m.getUserName());
-			pstmt.setString(4, m.getNickName());
-			pstmt.setString(5, m.getPhone());
-			pstmt.setString(6, m.getEmail());
-			pstmt.setString(7, m.getAddress());
-			pstmt.setString(8, m.getInterest());
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getUserPwd());
+			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getNickName());
+			pstmt.setString(5, member.getPhone());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setString(7, member.getAddress());
+			pstmt.setString(8, member.getInterest());
 			
 			result = pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -104,15 +101,13 @@ public class MemberDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			
 			pstmt.setString(1, userId);
 			
 			rset = pstmt.executeQuery();
+			
 			if(rset.next()) {
 				result = rset.getInt(1);
 			}
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -121,15 +116,12 @@ public class MemberDAO {
 		}
 		
 		return result;
-		
-		
-		
 	}
 
 	public Member selectMember(Connection conn, String loginUserId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Member member = null;
+		Member loginUser = null;
 		
 		String query = prop.getProperty("selectMember");
 		
@@ -140,19 +132,18 @@ public class MemberDAO {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				member =  new Member(rset.getString("user_id"),
-									rset.getString("user_pwd"),
-									rset.getString("user_name"),
-									rset.getString("nickName"),
-									rset.getString("phone"),
-									rset.getString("email"),
-									rset.getString("address"),
-									rset.getString("interest"),
-									rset.getDate("enroll_date"),
-									rset.getDate("modify_date"),
-									rset.getString("status"));
+				loginUser = new Member(rset.getString("user_id"),
+										rset.getString("user_pwd"),
+										rset.getString("user_name"),
+										rset.getString("nickName"),
+										rset.getString("phone"),
+										rset.getString("email"),
+										rset.getString("address"),
+										rset.getString("interest"),
+										rset.getDate("enroll_date"),
+										rset.getDate("modify_date"),
+										rset.getString("status"));
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -160,7 +151,7 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		
-		return member;
+		return loginUser;
 	}
 
 	public int updateMember(Connection conn, Member member) {
@@ -168,6 +159,7 @@ public class MemberDAO {
 		int result = 0;
 		
 		String query = prop.getProperty("updateMember");
+		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getUserName());
@@ -179,7 +171,7 @@ public class MemberDAO {
 			pstmt.setString(7, member.getUserId());
 			
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -188,9 +180,48 @@ public class MemberDAO {
 		
 		return result;
 	}
-	
-	
-	
+
+	public int updatePwd(Connection conn, String loginUserId, String pwd, String newPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, loginUserId);
+			pstmt.setString(3, pwd);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String loginUserId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, loginUserId);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
-
-

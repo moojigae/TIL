@@ -33,16 +33,17 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String no = request.getParameter("no");
 		
-		Notice notice = new NoticeService().noticeDetail(no);
+		Notice notice = new NoticeService().detailNotice(no);
 		
 		String page = null;
 		if(notice != null) {
 			page = "views/notice/noticeDetailView.jsp";
 			request.setAttribute("notice", notice);
 		} else {
-			page ="views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 상세조회에 실패했습니다");
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "공지사항 상세조회에 실패하였습니다.");
 		}
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
@@ -51,6 +52,7 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

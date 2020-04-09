@@ -31,22 +31,22 @@ public class UpdateMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("joinUserId");
-		String userName= request.getParameter("userName");
+		String userName = request.getParameter("userName");
 		String nickName = request.getParameter("nickName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		String[] irr = request.getParameterValues("interest");
-	
-		String interest = "";
-		if(irr != null) {
-			interest = String.join(", ", irr);
+		String[] interest = request.getParameterValues("interest");
+		
+		String interests = "";
+		if(interest != null) {
+			interests = String.join(", ", interest);			
 		}
 		
-		Member member = new Member(userId, null, userName, nickName, phone, email, address, interest, null, null,null);
+		Member member = new Member(userId, null, userName, nickName, phone, email, address, interests, null, null, null);
 		
 		int result = new MemberService().updateMember(member);
 		

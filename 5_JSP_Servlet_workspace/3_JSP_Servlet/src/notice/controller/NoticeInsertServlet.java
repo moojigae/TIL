@@ -34,13 +34,13 @@ public class NoticeInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		String title = request.getParameter("title");
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		String date = request.getParameter("date");
 		String content = request.getParameter("content");
-	
+		
 		Date sqlDate = null;
 		if(date.equals("")) {
 			sqlDate = new Date(new GregorianCalendar().getTimeInMillis());
@@ -56,13 +56,12 @@ public class NoticeInsertServlet extends HttpServlet {
 		Notice n = new Notice(title, content, userId, sqlDate);
 		int result = new NoticeService().insertNotice(n);
 		
-		if(result > 0 ) {
+		if(result > 0) {
 			response.sendRedirect("list.no");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			request.setAttribute("msg", "공지사항 등록에 실패했습니다.");
 			view.forward(request, response);
-					
 		}
 	}
 

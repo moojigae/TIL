@@ -19,8 +19,7 @@ public class CommonFilter implements Filter {
      * Default constructor. 
      */
     public CommonFilter() {
-        // TODO Auto-generated constructor stub
-    	System.out.println("CommonFliter 작동");
+    	System.out.println("CommonFilter 작동");
     }
 
 	/**
@@ -28,6 +27,7 @@ public class CommonFilter implements Filter {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
+		System.out.println("CommonFilter 작동");
 	}
 
 	/**
@@ -36,8 +36,8 @@ public class CommonFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		request.setCharacterEncoding("UTF-8"); // 오는 데이터에 대한 인코딩
-		response.setContentType("text/html; charset=UTF-8"); // 보내는 데이터에 대한 인코딩
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

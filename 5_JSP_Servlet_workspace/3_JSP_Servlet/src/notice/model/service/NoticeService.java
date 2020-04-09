@@ -23,29 +23,27 @@ public class NoticeService {
 		Connection conn = getConnection();
 		int result = new NoticeDAO().insertNotice(conn, n);
 		
-		if(result > 0) {
+		if(result>0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
+		
 		return result;
 	}
 
-	public Notice noticeDetail(String no) {
+	public Notice detailNotice(String no) {
 		Connection conn = getConnection();
 		
-		NoticeDAO nDAO = new NoticeDAO();
-		
-		int result = nDAO.updateCount(conn, no); // 조회수 업데이트 용
-		
 		Notice notice = null;
+		int result = new NoticeDAO().updateCount(conn, no);
 		if(result > 0) {
-			notice = new NoticeDAO().noticeDetail(conn, no);
+			notice = new NoticeDAO().detailNotice(conn, no);
 			
 			if(notice != null) {
-				commit(conn); // 조회수 업데이트에 관한 커밋
-			} else { 
+				commit(conn);
+			} else {
 				rollback(conn);
 			}
 		}
@@ -54,9 +52,9 @@ public class NoticeService {
 		return notice;
 	}
 
-	public int noticeUpdate(Notice n) {
+	public int updateNotice(Notice n) {
 		Connection conn = getConnection();
-		int result = new NoticeDAO().noticeUpdate(conn, n);
+		int result = new NoticeDAO().updateNotice(conn, n);
 		
 		if(result>0) {
 			commit(conn);
@@ -64,7 +62,8 @@ public class NoticeService {
 			rollback(conn);
 		}
 		close(conn);
+		
 		return result;
 	}
-	
+
 }

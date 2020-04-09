@@ -15,18 +15,17 @@ public class JDBCTemplate {
 	
 	public static Connection getConnection() {
 		Connection conn = null;
-		Properties prop= null;
+		Properties prop = null;
 		
 		String fileName = JDBCTemplate.class.getResource("/sql/driver.properties").getPath();
-
+		
 		try {
 			prop = new Properties();
 			prop.load(new FileReader(fileName));
 			
 			Class.forName(prop.getProperty("driver"));
-			conn = DriverManager.getConnection(prop.getProperty("url"),
-												prop.getProperty("username"),
-												prop.getProperty("password"));
+			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
+			
 			conn.setAutoCommit(false);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -50,15 +49,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	public static void close(ResultSet rset) {
-		try {
-			if(rset != null && !rset.isClosed()) {
-				rset.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	
 	public static void close(Statement stmt) {
 		try {
 			if(stmt != null && !stmt.isClosed()) {
@@ -68,6 +59,17 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void close(ResultSet rset) {
+		try {
+			if(rset != null && !rset.isClosed()) {
+				rset.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void commit(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {
@@ -77,6 +79,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void rollback(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {

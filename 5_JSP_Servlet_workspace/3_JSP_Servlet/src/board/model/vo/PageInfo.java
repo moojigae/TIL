@@ -85,5 +85,4 @@ public class PageInfo {
 				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + ", boardLimit=" + boardLimit + "]";
 	}
 	
-	
 }

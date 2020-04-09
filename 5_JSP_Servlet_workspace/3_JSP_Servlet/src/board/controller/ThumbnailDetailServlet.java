@@ -32,11 +32,11 @@ public class ThumbnailDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bid = Integer.parseInt(request.getParameter("bid"));
+		String bid=request.getParameter("bid");
 		
 		BoardService service = new BoardService();
 		
-		Board board = service.selectBoard(bid);
+		Board board = service.detailBoard(bid);
 		ArrayList<Attachment> fileList = service.selectThumbnail(bid);
 		
 		if(board != null && fileList != null) {
@@ -53,6 +53,7 @@ public class ThumbnailDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

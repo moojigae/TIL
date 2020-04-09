@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.vo.Member;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
@@ -33,44 +34,36 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 번호, 제목, 내용, 날짜 받아와서 String으로 되어 있는 날짜를 sql.Date형식으로 바꿔주기(insert할때와 비슷)
-		int no = Integer.parseInt(request.getParameter("no"));
+		request.setCharacterEncoding("UTF-8");
+		
+		String no = request.getParameter("no");
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		String date = request.getParameter("date");
+		String content = request.getParameter("content");
 		
 		Date sqlDate = null;
-		
-		if(date != "") {
+		if(date.equals("")) {
+			sqlDate = new Date(new GregorianCalendar().getTimeInMillis());
+		} else {
 			String[] dateArr = date.split("-");
-			
 			int year = Integer.parseInt(dateArr[0]);
 			int month = Integer.parseInt(dateArr[1])-1;
 			int day = Integer.parseInt(dateArr[2]);
 			
-			sqlDate = new Date(new GregorianCalendar(year, month, day).getTimeInMillis()); //천분의 일초 단위로 하여 변환
-		}else {
-			sqlDate = new Date(new GregorianCalendar().getTimeInMillis());
+			sqlDate = new Date(new GregorianCalendar(year, month, day).getTimeInMillis());
 		}
-		
-		Notice n = new Notice();
-		n.setnNo(no);
-		n.setnTitle(title);
-		n.setnContent(content);
-		n.setnDate(sqlDate);
+		Notice n = new Notice(Integer.parseInt(no), title, content, userId, 0, sqlDate);
 		
 		int result = new NoticeService().updateNotice(n);
 		
-		String page = null;
 		if(result > 0) {
-			page = "/detail.no?no=" + no;
-		} else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 수정에 실패하였습니다.");
+			response.sendRedirect("list.no");
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("msg", "공지사항 수정에 실패했습니다.");
+			view.forward(request, response);
 		}
-		
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

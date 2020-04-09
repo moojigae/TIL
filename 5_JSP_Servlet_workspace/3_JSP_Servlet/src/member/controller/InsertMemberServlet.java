@@ -16,8 +16,6 @@ import member.model.vo.Member;
  * Servlet implementation class InsertMemberServlet
  */
 @WebServlet(urlPatterns = "/insert.me", name = "InsertMemberServlet")
-// "/insert.me" 하나만 있을 때는 urlPatterns 생략이 가능 했지만 name을 넣어서
-// 들어가는 이름으로 맵핑시키기 때문에 urlPatterns와 name이 꼭 들어가야한다
 public class InsertMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,12 +31,10 @@ public class InsertMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 //		request.setCharacterEncoding("UTF-8");
-		
+
 		String userId = request.getParameter("joinUserId");
 		String userPwd = request.getParameter("joinUserPwd");
-		String checkPwd = request.getParameter("joinUserPwd2");
 		String userName = request.getParameter("userName");
 		String nickName = request.getParameter("nickName");
 		String phone = request.getParameter("phone");
@@ -47,27 +43,26 @@ public class InsertMemberServlet extends HttpServlet {
 		String[] interest = request.getParameterValues("interest");
 		
 		String interests = String.join(", ", interest);
-		Member m = new Member(userId,userPwd,userName,nickName,phone,email,address,interests ,null,null,null);
-	
-//		System.out.println(m);
 		
-		int result = new MemberService().insertMember(m);
+		Member member = new Member(userId, userPwd, userName, nickName, phone, email, address, interests, null, null, null);
 		
-		String page="";
-		String msg="";
+		int result = new MemberService().insertMember(member);
+		
+		String page = "";
+		String msg = "";
 		if(result > 0) {
 			page = "/";
+//			page = "index.jsp";
+//			page = request.getContextPath();
 			msg = "회원가입에 성공했습니다.";
 //			request.setAttribute("msg", "회원가입에 성공했습니다.");
-//			
 //			RequestDispatcher view = request.getRequestDispatcher(request.getContextPath());
-//			
 //			view.forward(request, response);
 		} else {
 			page = "views/common/errorPage.jsp";
-			msg = "회원가입에 실패했습니다";
+			msg = "회원가입에 실패했습니다.";
 //			request.setAttribute("msg", "회원가입에 실패했습니다.");
-//			RequestDispatcher view = request.getRequestDispatcher("views/comon/errorPage.jsp");
+//			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 //			view.forward(request, response);
 		}
 		

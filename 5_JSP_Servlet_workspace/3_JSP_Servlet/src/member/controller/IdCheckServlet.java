@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,15 +31,24 @@ public class IdCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("inputId");
+//		String userId = request.getParameter("inputId");
+		String userId = request.getParameter("userId");
 		
 		int result = new MemberService().idCheck(userId);
 		
-		request.setAttribute("result", result);
-		request.setAttribute("checkedId", userId);
+//		request.setAttribute("result", result);
+//		request.setAttribute("checkedId", userId);
+//		RequestDispatcher view = request.getRequestDispatcher("views/member/idCheckForm.jsp");
+//		view.forward(request, response);
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/member/idCheckForm.jsp");
-		view.forward(request, response);
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.append("fail");
+		} else {
+			out.append("success");
+		}
+		out.flush();
+		out.close();
 	}
 
 	/**

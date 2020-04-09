@@ -16,7 +16,7 @@ public class Member {
 	private String status;
 	
 	public Member() {}
-
+	
 	public Member(String userId, String userPwd) {
 		super();
 		this.userId = userId;
@@ -126,11 +126,12 @@ public class Member {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", nickName=" + nickName
 				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
 				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
+
 }

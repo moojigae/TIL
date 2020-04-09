@@ -103,6 +103,4 @@ public class Notice {
 		return "Notice [nNo=" + nNo + ", nTitle=" + nTitle + ", nContent=" + nContent + ", nWriter=" + nWriter
 				+ ", nCount=" + nCount + ", nDate=" + nDate + ", status=" + status + "]";
 	}
-	
-	
 }

@@ -19,7 +19,8 @@ import common.wrapper.EncryptWrapper;
 @WebFilter(
 		servletNames = { 
 				"InsertMemberServlet", 
-				"LoginServlet"
+				"LoginServlet", 
+				"UpdatePwdServlet"
 		})
 public class EncryptFilter implements Filter {
 
@@ -49,7 +50,6 @@ public class EncryptFilter implements Filter {
 		
 		// pass the request along the filter chain
 		chain.doFilter(ew, response);
-		// ew를 같이 보내야 위에 맵핑한 서블렛에 들어갔을 때 ew를 같이보내서 getParameter를 적용할 수 있음
 	}
 
 	/**

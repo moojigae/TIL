@@ -26,7 +26,9 @@ public class NoticeListServlet extends HttpServlet {
     public NoticeListServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    }                         
+    
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,6 +44,7 @@ public class NoticeListServlet extends HttpServlet {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "공지사항 조회에 실패하였습니다.");
 		}
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}

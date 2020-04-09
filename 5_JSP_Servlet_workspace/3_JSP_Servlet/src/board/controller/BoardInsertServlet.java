@@ -2,12 +2,12 @@ package board.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
@@ -32,29 +32,23 @@ public class BoardInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		String category = request.getParameter("category");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String writer = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		String writer = loginUser.getUserId();
+		Board board = new Board(0, 0, category, title, content, writer, 0, null, null, null);
 		
-		Board b = new Board();
-		b.setbContent(content);
-		b.setbTitle(title);
-		b.setCategory(category);
-		b.setbWriter(writer);
-		
-		int result = new BoardService().insertBoard(b);
+		int result = new BoardService().insertBoard(board);
 		
 		if(result > 0) {
-			response.sendRedirect("list.bo?currentPage=1");
+			response.sendRedirect("list.bo");
 		} else {
-			request.setAttribute("msg", "게시글 작성에 실패하였습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("msg", "�Խ��� ��Ͽ� �����߽��ϴ�.");
+			view.forward(request, response);
 		}
 	}
 
